@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
+import { socialLinksField } from '@/fields/socialLinks'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -21,10 +22,11 @@ export const Footer: GlobalConfig = {
       admin: {
         initCollapsed: true,
         components: {
-          RowLabel: '@/Footer/RowLabel#RowLabel',
+          RowLabel: '@/globals/Footer/RowLabel#RowLabel',
         },
       },
-    }
+    },
+    socialLinksField
   ],
   hooks: {
     afterChange: [revalidateFooter],

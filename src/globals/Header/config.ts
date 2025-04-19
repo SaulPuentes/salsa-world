@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
+import { socialLinksField } from '@/fields/socialLinks'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -22,10 +23,11 @@ export const Header: GlobalConfig = {
       admin: {
         initCollapsed: true,
         components: {
-          RowLabel: '@/Header/RowLabel#RowLabel',
+          RowLabel: '@/globals/Header/RowLabel#RowLabel',
         },
       },
-    }
+    },
+    socialLinksField
   ],
   hooks: {
     afterChange: [revalidateHeader],
