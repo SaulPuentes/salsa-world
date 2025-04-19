@@ -14,6 +14,12 @@
   }
 
   :root {
+    /* Brand Colors */
+    --orange: 20 100% 50%;
+    --pink: 327 100% 50%;
+    --violet: 239 97% 68%;
+    --purple: 265 100% 25%;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 

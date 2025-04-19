@@ -24,7 +24,7 @@ export const Footer: GlobalConfig = {
           RowLabel: '@/Footer/RowLabel#RowLabel',
         },
       },
-    },
+    }
   ],
   hooks: {
     afterChange: [revalidateFooter],

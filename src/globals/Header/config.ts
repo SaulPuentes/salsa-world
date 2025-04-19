@@ -25,7 +25,7 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
-    },
+    }
   ],
   hooks: {
     afterChange: [revalidateHeader],
