@@ -55,6 +55,35 @@ export const Footer: GlobalConfig = {
       ],
     },
     socialLinksField,
+    {
+      name: 'featuredEvent',
+      label: 'Featured Event',
+      type: 'group',
+      admin: {
+        description: 'Highlight an event in the footer',
+      },
+      fields: [
+        {
+          name: 'image',
+          label: 'Event Image',
+          type: 'upload',
+          relationTo: 'media', // assuming you have a 'media' collection
+          required: false,
+        },
+        {
+          name: 'title',
+          label: 'Event Title',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'description',
+          label: 'Event Description',
+          type: 'textarea',
+          required: false,
+        },
+      ],
+    },
   ],
   hooks: {
     afterChange: [revalidateFooter],
