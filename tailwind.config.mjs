@@ -101,7 +101,8 @@ export default {
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        mulish: ['Mulish', 'sans-serif'],
+        lilita: ['Lilita One', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {

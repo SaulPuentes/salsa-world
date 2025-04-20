@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Mulish';
+  src: url('../../../public/fonts/Mulish-ExtraLight.woff2') format('woff2'),
+      url('../../../public/fonts/Mulish-ExtraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mulish';
+  src: url('../../../public/fonts/Mulish-ExtraLight.woff2') format('woff2'),
+      url('../../../public/fonts/Mulish-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lilita One';
+  src: url('../../../public/fonts/LilitaOne.woff2') format('woff2'),
+      url('../../../public/fonts/LilitaOne.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   h1,
   h2,
@@ -106,4 +131,12 @@ html {
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
+}
+h1, h2 {
+  font-family: 'Lilita One', sans-serif;
+  font-weight: normal;
+}
+a, p {
+  font-family: 'Mulish', sans-serif;
+  font-weight: normal;
 }

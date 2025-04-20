@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React from 'react'
-import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
+import { TbBrandFacebook, TbBrandInstagram, TbBrandTiktok } from "react-icons/tb"
 
 
 type Platform = 'facebook' | 'instagram' | 'tiktok'
@@ -14,23 +14,31 @@ export type SocialLink = {
 }
 
 type Props = {
-  links: SocialLink[]
+  links?: SocialLink[]
   color?: string
   className?: string
 }
 
 const iconMap = {
-  facebook: <FaFacebookF className="w-5 h-5" />,
-  instagram: <FaInstagram className="w-5 h-5" />,
-  tiktok: <FaTiktok className="w-5 h-5" />,
+  facebook: <TbBrandFacebook className="w-6 h-6" />,
+  instagram: <TbBrandInstagram className="w-6 h-6" />,
+  tiktok: <TbBrandTiktok className="w-6 h-6" />,
 }
 
-export const SocialLinks: React.FC<Props> = ({ links, color = 'text-white' }) => {
-  if (!links?.length) return null
+const defaultSocialLinks: SocialLink[] = [
+  { platform: 'instagram', url: 'https://www.instagram.com/salsaworld' },
+  { platform: 'facebook', url: 'https://www.facebook.com/salsaworld' },
+  { platform: 'tiktok', url: 'https://www.tiktok.com/@salsaworld' },
+]
+
+export const SocialLinks: React.FC<Props> = ({ links , color = 'text-white' }) => {
+  // if (!links?.length) return null
+
+  const socialLinksToUse = links?.length ? links : defaultSocialLinks
 
   return (
     <div className="flex gap-4 items-center">
-      {links.map(({ platform, url, id }) => (
+      {socialLinksToUse.map(({ platform, url, id }) => (
         <Link
           key={id ?? platform}
           href={url}

@@ -11,7 +11,7 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'shortcuts',
       type: 'array',
       fields: [
         link({
@@ -26,7 +26,35 @@ export const Footer: GlobalConfig = {
         },
       },
     },
-    socialLinksField
+    {
+      name: 'contact',
+      label: 'Contact Info',
+      type: 'group',
+      admin: {
+        description: 'Contact information displayed in the footer',
+      },
+      fields: [
+        {
+          name: 'address',
+          label: 'Address',
+          type: 'text',
+          required: false,
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          type: 'email',
+          required: false,
+        },
+        {
+          name: 'phone',
+          label: 'Phone',
+          type: 'text',
+          required: false,
+        },
+      ],
+    },
+    socialLinksField,
   ],
   hooks: {
     afterChange: [revalidateFooter],

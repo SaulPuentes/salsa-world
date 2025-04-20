@@ -1440,10 +1440,7 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
-  /**
-   * Configure the optional button in the header (e.g., login, dashboard, or CTA).
-   */
-  privateArea: {
+  privateArea?: {
     link: {
       type?: ('reference' | 'custom') | null;
       newTab?: boolean | null;
@@ -1476,7 +1473,7 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  shortcuts?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
@@ -1496,6 +1493,14 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Contact information displayed in the footer
+   */
+  contact?: {
+    address?: string | null;
+    email?: string | null;
+    phone?: string | null;
+  };
   socialLinks?:
     | {
         platform: 'facebook' | 'instagram' | 'tiktok';
@@ -1554,7 +1559,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  shortcuts?:
     | T
     | {
         link?:
@@ -1567,6 +1572,13 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  contact?:
+    | T
+    | {
+        address?: T;
+        email?: T;
+        phone?: T;
       };
   socialLinks?:
     | T

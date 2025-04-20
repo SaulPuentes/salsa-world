@@ -10,17 +10,17 @@ import { SocialLinks } from '@/components/SocialLinks'
 export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
   const navItems = data?.navItems || []
   const socialLinks = data?.socialLinks || []
-  const privateArea = data?.privateArea || []
+  const privateArea = data?.privateArea
 
   return (
-    <nav className="flex gap-3 items-center">
+    <nav className="flex gap-3 items-center uppercase">
       {navItems.map(({ link }, i) => {
         return <CMSLink key={i} {...link} appearance="link" />
       })}
       {privateArea?.link && (
         <CMSLink
-          className='text-white'
-          {...privateArea.link}
+          className='text-white font-lilita'
+          {...privateArea?.link}
           appearance="outline"
           size="sm"
           newTab={false}
