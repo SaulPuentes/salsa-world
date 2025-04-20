@@ -12,32 +12,55 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { hasLocale, NextIntlClientProvider } from 'next-intl'
 
-import './globals.css'
+import '../globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { notFound } from 'next/navigation'
+import { routing } from '@/i18n/routing'
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}));
+}
+
+export default async function RootLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode
+  params: Promise<{locale: string}>;
+}) {
   const { isEnabled } = await draftMode()
 
+  const {locale} = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(GeistSans.variable, GeistMono.variable)}
+      lang={locale}
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <NextIntlClientProvider>
+          <Providers>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled
+              }}
+            />
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   )
