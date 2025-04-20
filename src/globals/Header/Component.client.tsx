@@ -6,8 +6,10 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { MobileMenu } from './MobileMenu'
+import { Logo } from '@/components/Logo/Logo'
+import { HamburgerTrigger } from '@/components/HamburgerTrigger'
 
 interface HeaderClientProps {
   data: Header
@@ -16,6 +18,7 @@ interface HeaderClientProps {
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
@@ -30,13 +33,21 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="relative z-20 bg-purple " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between container">
-        <Link href="/">
-          <Logo loading="eager" priority="high"/>
+    <header className="relative z-20 bg-purple text-white" {...(theme ? { 'data-theme': theme } : {})}>
+      <div className="py-8 flex justify-between items-center container">
+        <Link href="/" className="relative z-40">
+          <Logo loading="eager" priority="high" />
         </Link>
-        <HeaderNav data={data} />
+
+        <div className="md:hidden">
+          <HamburgerTrigger isOpen={menuOpen} onClick={() => setMenuOpen(!menuOpen)} />
+        </div>
+
+        <div className="hidden md:block">
+          <HeaderNav data={data} />
+        </div>
       </div>
+      {menuOpen && <MobileMenu data={data} />}
     </header>
   )
 }

@@ -1440,6 +1440,26 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Configure the optional button in the header (e.g., login, dashboard, or CTA).
+   */
+  privateArea: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
   socialLinks?:
     | {
         platform: 'facebook' | 'instagram' | 'tiktok';
@@ -1504,6 +1524,19 @@ export interface HeaderSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  privateArea?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
       };
   socialLinks?:
     | T

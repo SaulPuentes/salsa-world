@@ -16,6 +16,7 @@ export type SocialLink = {
 type Props = {
   links: SocialLink[]
   color?: string
+  className?: string
 }
 
 const iconMap = {

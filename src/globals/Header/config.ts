@@ -27,7 +27,21 @@ export const Header: GlobalConfig = {
         },
       },
     },
-    socialLinksField
+    {
+      name: 'privateArea',
+      label: 'Private Area',
+      localized: true,
+      type: 'group',
+      fields: [
+        link({
+          appearances: false,
+        }),
+      ],
+      admin: {
+        description: 'Configure the optional button in the header (e.g., login, dashboard, or CTA).',
+      },
+    },
+    socialLinksField,
   ],
   hooks: {
     afterChange: [revalidateHeader],
