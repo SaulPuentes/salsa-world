@@ -9,11 +9,18 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 
+
 export const hero: Field = {
   name: 'hero',
   type: 'group',
   localized: true,
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+      required: true,
+    },
     {
       name: 'type',
       type: 'select',
@@ -67,6 +74,31 @@ export const hero: Field = {
       },
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'logo',
+      type: 'upload',
+      label: 'Logo',
+      relationTo: 'media',
+      admin: {
+        condition: (_, { type } = {}) => type === 'mediumImpact',
+      },
+    },
+    {
+      name: 'overlayEnabled',
+      type: 'checkbox',
+      label: 'Enable Overlay',
+      admin: {
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+      },
+    },
+    {
+      name: 'overlayColor',
+      type: 'text',
+      label: 'Overlay Color (Hex or CSS Value)',
+      admin: {
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+      },
     },
   ],
   label: false,

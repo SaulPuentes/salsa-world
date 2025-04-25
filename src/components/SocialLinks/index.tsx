@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/utilities/cn'
 import Link from 'next/link'
 import React from 'react'
 import { TbBrandFacebook, TbBrandInstagram, TbBrandTiktok } from "react-icons/tb"
@@ -31,13 +32,13 @@ const defaultSocialLinks: SocialLink[] = [
   { platform: 'tiktok', url: 'https://www.tiktok.com/@salsaworld' },
 ]
 
-export const SocialLinks: React.FC<Props> = ({ links , color = 'text-white' }) => {
+export const SocialLinks: React.FC<Props> = ({ links , color = 'text-white', className }) => {
   // if (!links?.length) return null
 
   const socialLinksToUse = links?.length ? links : defaultSocialLinks
 
   return (
-    <div className="flex gap-4 items-center">
+    <div className={cn("flex gap-4 items-center", className)}>
       {socialLinksToUse.map(({ platform, url, id }) => (
         <Link
           key={id ?? platform}

@@ -143,6 +143,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
+    title: string;
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
       root: {
@@ -184,6 +185,9 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
+    logo?: (number | null) | Media;
+    overlayEnabled?: boolean | null;
+    overlayColor?: string | null;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
@@ -927,6 +931,7 @@ export interface PagesSelect<T extends boolean = true> {
   hero?:
     | T
     | {
+        title?: T;
         type?: T;
         richText?: T;
         links?:
@@ -945,6 +950,9 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        logo?: T;
+        overlayEnabled?: T;
+        overlayColor?: T;
       };
   layout?:
     | T
