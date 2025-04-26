@@ -16,7 +16,6 @@ export async function Footer() {
   const contact = footerData?.contact
   const featuredEventImage = footerData?.featuredEvent?.image as Media
 
-  console.log('featuredEventImage', featuredEventImage)
   return (
     <footer className="mt-auto bg-purple text-white flex-col text-md md:text-lg">
       <div className="container py-8 px-5 gap-8 md:flex flex-col md:flex-row md:justify-between">

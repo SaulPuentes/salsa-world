@@ -32,7 +32,7 @@ export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
           appearance="outline"
           size="sm"
           newTab={false}
-          className="text-white font-lilita mx-4 px-5 py-1 border border-pink hover:bg-pink hover:text-white transition-all duration-300 ease-in-out rounded"
+          className="text-white mx-4 px-5 py-1 border border-pink hover:bg-pink hover:text-white transition-all duration-300 ease-in-out rounded"
         />
       )}
 

@@ -185,9 +185,7 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
-    logo?: (number | null) | Media;
-    overlayEnabled?: boolean | null;
-    overlayColor?: string | null;
+    overlayImage?: (number | null) | Media;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
@@ -950,9 +948,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
-        logo?: T;
-        overlayEnabled?: T;
-        overlayColor?: T;
+        overlayImage?: T;
       };
   layout?:
     | T

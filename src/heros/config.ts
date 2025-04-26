@@ -76,26 +76,10 @@ export const hero: Field = {
       required: true,
     },
     {
-      name: 'logo',
+      name: 'overlayImage',
       type: 'upload',
-      label: 'Logo',
+      label: 'Overlay Image',
       relationTo: 'media',
-      admin: {
-        condition: (_, { type } = {}) => type === 'mediumImpact',
-      },
-    },
-    {
-      name: 'overlayEnabled',
-      type: 'checkbox',
-      label: 'Enable Overlay',
-      admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-      },
-    },
-    {
-      name: 'overlayColor',
-      type: 'text',
-      label: 'Overlay Color (Hex or CSS Value)',
       admin: {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
       },
