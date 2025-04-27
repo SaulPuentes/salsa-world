@@ -2,19 +2,20 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Footer, Media } from '@/payload-types'
+import type { Footer } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { SocialLinks } from '@/components/SocialLinks'
 import Image from 'next/image'
+import { isMedia } from '@/utilities/isMedia'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
 
   const shortcuts = footerData?.shortcuts || []
   const contact = footerData?.contact
-  const featuredEventImage = footerData?.featuredEvent?.image as Media
+  const featuredEventImage = footerData?.featuredEvent?.image
 
   return (
     <footer className="mt-auto bg-purple text-white flex-col text-md md:text-lg">
@@ -25,13 +26,13 @@ export async function Footer() {
 
         <div className="flex flex-col items-start md:flex-row gap-10">
           <nav className="flex flex-col gap-4">
-            <h1 className='text-2xl md:text-[28px] uppercase'>Accesos directos</h1>
+            <h1 className='text-2xl md:text-[28px]'>Accesos directos</h1>
             {shortcuts.map(({ link }, i) => {
               return <CMSLink className="text-white" key={i} {...link} />
             })}
           </nav>
           <div className="flex flex-col gap-4 max-w-[300px]">
-            <h1 className='text-2xl md:text-[28px] uppercase'>Donde encontrarnos</h1>
+            <h1 className='text-2xl md:text-[28px]'>Donde encontrarnos</h1>
               <p className="text-white">
                 {contact?.address}
               </p>
@@ -44,16 +45,18 @@ export async function Footer() {
               <SocialLinks color='text-pink' />
           </div>
           <div className='flex flex-col gap-4 text-white max-w-[380px]'>
-            <h1 className='text-2xl md:text-[28px] uppercase'>Evento destacado del mes</h1>
-            <Image
-              src={featuredEventImage?.url || ''}
-              alt={featuredEventImage?.alt || ''}
-              width={378}
-              height={143}
-              objectPosition='center'
-              objectFit='cover'
-            />
-            <h3 className='text-lg uppercase'>
+            <h1 className='text-2xl md:text-[28px]'>Evento destacado del mes</h1>
+            {isMedia(featuredEventImage) && (
+              <Image
+                src={featuredEventImage?.url || ''}
+                alt={featuredEventImage?.alt || ''}
+                width={378}
+                height={143}
+                objectPosition='center'
+                objectFit='cover'
+              />
+            )}
+            <h3 className='text-lg'>
               Salsa Fest
             </h3>
             <p>

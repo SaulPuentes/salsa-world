@@ -2,11 +2,12 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 
-import type { Media as MediaType, Page } from '@/payload-types'
+import type { Page } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { isMedia } from '@/utilities/isMedia'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({
   links,
@@ -21,22 +22,14 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
     setHeaderTheme('dark')
   })
 
-  const overlay = overlayImage as MediaType
-
   return (
     <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white"
+      className="relative flex items-center justify-center text-white overflow-x-hidden"
       data-theme="dark"
     >
-     <div
-        className="absolute top-0 left-0 h-full w-full -ml-[25%] bg-no-repeat bg-cover bg-right"
-        style={{
-          backgroundImage: overlay?.url ? `url(${overlay.url})` : undefined,
-        }}
-      />
-      <div className="container mb-8 z-10 relative flex items-center">
+      <div className="container my-20 md:mb-8 z-10 relative flex items-center">
         <div className="max-w-[36.5rem]">
-          <h1 className="text-4xl md:text-5xl mb-6">
+          <h1 className="text-3xl md:text-5xl mb-6">
             {title}
           </h1>
           {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
@@ -53,9 +46,16 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
             )}
         </div>
       </div>
-      <div className="min-h-[85vh] select-none">
-        {media && typeof media === 'object' && (
+      <div className="min-h-[80vh] select-none">
+        {isMedia(media) && (
           <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
+        )}
+        {isMedia(overlayImage) && (
+          <Media
+            priority
+            resource={overlayImage}
+            imgClassName="absolute top-0 left-0 min-w-[130%] sm:min-w-[95%] lg:min-w-[75%] h-full object-cover object-right -z-5"
+          />
         )}
       </div>
     </div>

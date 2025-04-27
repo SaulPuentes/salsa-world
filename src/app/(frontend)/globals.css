@@ -135,6 +135,7 @@ html[data-theme='light'] {
 h1, h2, h3 {
   font-family: 'Lilita One', sans-serif;
   font-weight: normal;
+  text-transform: uppercase;
 }
 a, p {
   font-family: 'Mulish', sans-serif;
