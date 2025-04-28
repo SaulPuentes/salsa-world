@@ -132,7 +132,16 @@ export interface Page {
     overlayImage?: (number | null) | Media;
   };
   layout?:
-    | (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | FAQsBlock | PromoBannerBlock)[]
+    | (
+        | CallToActionBlock
+        | ContentBlock
+        | MediaBlock
+        | ArchiveBlock
+        | FormBlock
+        | FAQsBlock
+        | PromoBannerBlock
+        | EventsFinderBlock
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -741,6 +750,49 @@ export interface PromoBannerBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsFinderBlock".
+ */
+export interface EventsFinderBlock {
+  title?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  showLogo?: boolean | null;
+  description?: string | null;
+  linkAction: 'navigate' | 'loadMore';
+  link?: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  backgroundImage?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventsFinder';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -976,6 +1028,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         faqs?: T | FAQsBlockSelect<T>;
         promoBanner?: T | PromoBannerBlockSelect<T>;
+        eventsFinder?: T | EventsFinderBlockSelect<T>;
       };
   meta?:
     | T
@@ -1107,6 +1160,28 @@ export interface PromoBannerBlockSelect<T extends boolean = true> {
         url?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsFinderBlock_select".
+ */
+export interface EventsFinderBlockSelect<T extends boolean = true> {
+  title?: T;
+  showLogo?: T;
+  description?: T;
+  linkAction?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  backgroundImage?: T;
   id?: T;
   blockName?: T;
 }
