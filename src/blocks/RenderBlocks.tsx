@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { FAQsBlock } from './FAQs/Component'
+import { PromoBannerBlock } from './PromoBanner/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,10 +17,11 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   faqs: FAQsBlock,
+  promoBanner: PromoBannerBlock
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout']
 }> = (props) => {
   const { blocks } = props
 

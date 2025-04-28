@@ -12,7 +12,6 @@ import { FAQsBlock as FAQsBlockProps } from '@/payload-types'
 export const FAQsBlock: React.FC<FAQsBlockProps> = (props) => {
   const { items } = props
 
-  console.log('items', items)
   if (!items || items.length === 0) {
     return null
   }

@@ -87,7 +87,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    title: string;
+    title?: string | null;
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
       root: {
@@ -131,7 +131,9 @@ export interface Page {
     media?: (number | null) | Media;
     overlayImage?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | FAQsBlock)[];
+  layout?:
+    | (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | FAQsBlock | PromoBannerBlock)[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -698,6 +700,47 @@ export interface FAQsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoBannerBlock".
+ */
+export interface PromoBannerBlock {
+  title: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  description: string;
+  media: number | Media;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'promoBanner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -932,6 +975,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         faqs?: T | FAQsBlockSelect<T>;
+        promoBanner?: T | PromoBannerBlockSelect<T>;
       };
   meta?:
     | T
@@ -1042,6 +1086,26 @@ export interface FAQsBlockSelect<T extends boolean = true> {
         question?: T;
         answer?: T;
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoBannerBlock_select".
+ */
+export interface PromoBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  media?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
       };
   id?: T;
   blockName?: T;

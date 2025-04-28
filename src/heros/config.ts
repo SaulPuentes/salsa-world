@@ -19,7 +19,6 @@ export const hero: Field = {
       name: 'title',
       type: 'text',
       label: 'Title',
-      required: true,
     },
     {
       name: 'type',
