@@ -62,6 +62,7 @@ export default {
         pink: 'hsl(var(--pink))',
         violet: 'hsl(var(--violet))',
         purple: 'hsl(var(--purple))',
+        'highlight-warm': 'hsl(var(--highlight-warm))',
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',

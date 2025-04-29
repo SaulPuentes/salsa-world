@@ -28,17 +28,17 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
       data-theme="dark"
     >
       <div className="container my-20 md:mb-8 z-10 relative flex items-center">
-        <div className="max-w-[36.5rem]">
-          <h1 className="text-3xl md:text-5xl mb-6">
+        <div className="max-w-[45rem] text-highlight-warm">
+          <h1 className="text-3xl md:text-5xl mb-6 md:leading-[1.2em]">
             {title}
           </h1>
-          {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
+          {richText && <RichText className="mb-6 max-w-[35rem] mx-0" data={richText} enableGutter={false} />}
             {Array.isArray(links) && links.length > 0 && (
             <ul className="flex gap-4">
               {links.map(({ link }, i) => {
               return (
                 <li key={i}>
-                <CMSLink {...link} appearance={i % 2 === 0 ? 'violet' : 'orange'}/>
+                <CMSLink {...link} appearance={i % 2 === 0 ? 'violet' : 'orange'} className='text-xl'/>
                 </li>
               )
               })}

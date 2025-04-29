@@ -65,7 +65,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
         </div>
         {link && (
           <div className="mt-4">
-            <CMSLink {...link} />
+            <CMSLink {...link} appearance='pink' />
           </div>
         )}
       </div>

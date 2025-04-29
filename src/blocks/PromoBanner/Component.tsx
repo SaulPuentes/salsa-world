@@ -7,6 +7,7 @@ import { CMSLink } from '@/components/Link'
 import { isMedia } from '@/utilities/isMedia'
 import { Media } from '@/components/Media'
 import Image from 'next/image'
+import { DiamondLine } from '@/components/ui/diamond-line'
 
 type Props = {
   className?: string
@@ -19,7 +20,6 @@ export const PromoBannerBlock: React.FC<Props> = ({
   description,
   link,
 }) => {
-  // 👉 Define overlay URLs inside the component
   const overlayMobileUrl = '/img/overlay-mobile.svg'
   const overlayDesktopUrl = '/img/overlay.svg'
 
@@ -31,25 +31,32 @@ export const PromoBannerBlock: React.FC<Props> = ({
       )}
       data-theme="dark"
     >
-      <div className="container my-20 md:mb-8 z-10 relative flex flex-col md:flex-row w-full items-stretch">
+      <div className="container my-20 z-10 relative flex flex-col md:flex-row md:justify-between w-full items-stretch">
         {/* First Column */}
         <div className="w-full md:w-[45%] flex flex-col justify-center pr-8">
           {title && (
-            <RichText data={title} enableGutter={false} enableProse={false} className='text-3xl'/>
+            <RichText
+              data={title}
+              enableGutter={false}
+              enableProse={false}
+              className='text-5xl leading-[1.3em] text-highlight-warm'
+            />
           )}
-          <h2 className="text-3xl mb-6 text-pink">
+          <h2 className="text-5xl mb-3 text-pink leading-[1.3em]">
           Salsa World
           </h2>
+          <DiamondLine count={5} color='text-orange'/>
         </div>
 
         {/* Second Column */}
-        <div className="w-full md:w-[55%] flex flex-col justify-center bg-violet-600 p-8 rounded">
+        <div className="w-full md:w-[55%] max-w-[557px] flex flex-col justify-center bg-violet py-12 px-14 rounded">
           {description && (
-            <p className="text-base mb-6 text-white">{description}</p>
+            <p className="text-lg text-highlight-warm text-center">{description}</p>
           )}
-            <div className="flex flex-wrap gap-4">
-              <CMSLink {...link} />
-            </div>
+          <DiamondLine count={5} size={'w-2 h-2'} className='mx-auto my-6' />
+          <div className="flex flex-wrap gap-4 mx-auto">
+            <CMSLink {...link} appearance={'pink'} className='text-xl px-10 h-12'/>
+          </div>
         </div>
       </div>
 
@@ -69,7 +76,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
           src={overlayMobileUrl}
           alt="Overlay mobile"
           fill
-          className="object-cover object-center opacity-50"
+          className="object-cover object-center"
           priority
         />
         </div>
@@ -78,7 +85,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
             src={overlayDesktopUrl}
             alt="Overlay desktop"
             fill
-            className="object-cover object-center opacity-50"
+            className="object-cover object-center"
             priority
           />
         </div>

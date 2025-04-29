@@ -22,10 +22,9 @@ export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
           key={i}
           {...link}
           appearance="link"
-          className={cn("relative text-white", underlineAnimation)}
+          className={cn("relative text-white font-mulish font-medium", underlineAnimation)}
         />
       ))}
-
       {privateArea?.link && (
         <CMSLink
           {...privateArea?.link}
