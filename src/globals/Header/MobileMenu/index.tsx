@@ -29,7 +29,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ data }) => {
           )}
           style={{ animationDelay: `${index * 100}ms` }}
         >
-          <CMSLink {...link} appearance="link" className={cn("text-2xl", underlineAnimation)} />
+          <CMSLink {...link} appearance="link" className={cn("text-2xl font-mulish normal-case", underlineAnimation)} />
         </div>
       ))}
 

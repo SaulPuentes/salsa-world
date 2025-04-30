@@ -18,7 +18,7 @@ export const FAQsBlock: React.FC<FAQsBlockProps> = (props) => {
 
   return (
     <div className='bg-violet'>
-      <div className="container py-16">
+      <div className="container py-20">
         <h2 className="text-3xl text-white">
           Preguntas Frecuentes
         </h2>

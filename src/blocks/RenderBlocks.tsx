@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { FAQsBlock } from './FAQs/Component'
 import { PromoBannerBlock } from './PromoBanner/Component'
 import { EventsFinderBlock } from './EventFinder/Component'
+import { BackgroundPanelBlock } from './BackgroundPanel/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -19,7 +20,8 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   faqs: FAQsBlock,
   promoBanner: PromoBannerBlock,
-  eventsFinder: EventsFinderBlock
+  eventsFinder: EventsFinderBlock,
+  backgroundPanel: BackgroundPanelBlock
 }
 
 export const RenderBlocks: React.FC<{

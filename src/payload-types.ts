@@ -141,6 +141,7 @@ export interface Page {
         | FAQsBlock
         | PromoBannerBlock
         | EventsFinderBlock
+        | BackgroundPanelBlock
       )[]
     | null;
   meta?: {
@@ -793,6 +794,22 @@ export interface EventsFinderBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BackgroundPanelBlock".
+ */
+export interface BackgroundPanelBlock {
+  backgroundImageDesktop: number | Media;
+  backgroundImageMobile?: (number | null) | Media;
+  showLogo?: boolean | null;
+  textContent?: string | null;
+  linkLabel?: string | null;
+  linkUrl?: string | null;
+  height?: ('sm' | 'md' | 'lg') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'backgroundPanel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -1029,6 +1046,7 @@ export interface PagesSelect<T extends boolean = true> {
         faqs?: T | FAQsBlockSelect<T>;
         promoBanner?: T | PromoBannerBlockSelect<T>;
         eventsFinder?: T | EventsFinderBlockSelect<T>;
+        backgroundPanel?: T | BackgroundPanelBlockSelect<T>;
       };
   meta?:
     | T
@@ -1182,6 +1200,21 @@ export interface EventsFinderBlockSelect<T extends boolean = true> {
         label?: T;
       };
   backgroundImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BackgroundPanelBlock_select".
+ */
+export interface BackgroundPanelBlockSelect<T extends boolean = true> {
+  backgroundImageDesktop?: T;
+  backgroundImageMobile?: T;
+  showLogo?: T;
+  textContent?: T;
+  linkLabel?: T;
+  linkUrl?: T;
+  height?: T;
   id?: T;
   blockName?: T;
 }

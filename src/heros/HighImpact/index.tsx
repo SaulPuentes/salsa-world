@@ -16,25 +16,18 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
   title,
   overlayImage
 }) => {
-  const { setHeaderTheme } = useHeaderTheme()
-
-  useEffect(() => {
-    setHeaderTheme('dark')
-  })
-
   return (
     <div
       className="relative flex items-center justify-center text-white overflow-x-hidden"
-      data-theme="dark"
     >
       <div className="container my-20 md:mb-8 z-10 relative flex items-center">
-        <div className="max-w-[45rem] text-highlight-warm">
+        <div className="w-full max-w-[45rem] text-highlight-warm">
           <h1 className="text-3xl md:text-5xl mb-6 md:leading-[1.2em]">
             {title}
           </h1>
           {richText && <RichText className="mb-6 max-w-[35rem] mx-0" data={richText} enableGutter={false} />}
             {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex gap-4">
+            <ul className="flex gap-4 flex-col md:flex-row">
               {links.map(({ link }, i) => {
               return (
                 <li key={i}>

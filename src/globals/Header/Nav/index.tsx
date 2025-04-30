@@ -22,7 +22,7 @@ export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
           key={i}
           {...link}
           appearance="link"
-          className={cn("relative text-white font-mulish font-medium", underlineAnimation)}
+          className={cn("relative text-white font-mulish font-semibold", underlineAnimation)}
         />
       ))}
       {privateArea?.link && (

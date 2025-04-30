@@ -20,7 +20,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
   showLogo,
 }) => {
   return (
-    <div className={`relative overflow-hidden py-16 ${className || ''}`}>
+    <div className={`relative overflow-hidden pt-12 pb-16 ${className || ''} bg-white`}>
       {backgroundImage && (
         <Media
           resource={backgroundImage}
@@ -29,14 +29,14 @@ export const EventsFinderBlock: React.FC<Props> = ({
         />
       )}
 
-      <div className="relative z-10 container mx-auto text-center text-white px-4">
+      <div className="relative z-10 container mx-auto text-center px-4 text-black">
         {showLogo && (
           <div className="mb-6 flex justify-center">
             <Image
-              src="/logo.png" // Adjust path if needed
+              src="/img/isotype.svg"
               alt="Logo"
-              width={160}
-              height={60}
+              width={74}
+              height={97}
               className="h-auto"
             />
           </div>
@@ -54,7 +54,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
         )}
 
         {description && (
-          <p className="mb-6 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="mb-6 text-base md:text-lg max-w-xl mx-auto">
             {description}
           </p>
         )}
@@ -65,7 +65,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
         </div>
         {link && (
           <div className="mt-4">
-            <CMSLink {...link} appearance='pink' />
+            <CMSLink {...link} appearance='pink' className='text-xl px-8' />
           </div>
         )}
       </div>

@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { FAQs } from '../../blocks/FAQs/config'
 import { PromoBanner } from '@/blocks/PromoBanner/config'
 import { EventsFinder } from '@/blocks/EventFinder/config'
+import { BackgroundPanel } from '@/blocks/BackgroundPanel/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -86,7 +87,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 FAQs,
                 PromoBanner,
-                EventsFinder
+                EventsFinder,
+                BackgroundPanel
               ],
               admin: {
                 initCollapsed: true,

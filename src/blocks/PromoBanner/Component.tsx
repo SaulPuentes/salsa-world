@@ -31,7 +31,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
       )}
       data-theme="dark"
     >
-      <div className="container my-20 z-10 relative flex flex-col md:flex-row md:justify-between w-full items-stretch">
+      <div className="container my-20 z-10 relative flex flex-col md:flex-row md:justify-between w-full items-center">
         {/* First Column */}
         <div className="w-full md:w-[45%] flex flex-col justify-center pr-8">
           {title && (
@@ -39,17 +39,19 @@ export const PromoBannerBlock: React.FC<Props> = ({
               data={title}
               enableGutter={false}
               enableProse={false}
-              className='text-5xl leading-[1.3em] text-highlight-warm'
+              className='text-3xl md:text-5xl leading-[1.3em] text-highlight-warm'
             />
           )}
-          <h2 className="text-5xl mb-3 text-pink leading-[1.3em]">
+          <h2 className="text-3xl md:text-5xl mb-3 text-pink leading-[1.3em]">
           Salsa World
           </h2>
-          <DiamondLine count={5} color='text-orange'/>
+          <DiamondLine count={5} color='text-orange mb-10 md:mb-0'/>
         </div>
 
         {/* Second Column */}
-        <div className="w-full md:w-[55%] max-w-[557px] flex flex-col justify-center bg-violet py-12 px-14 rounded">
+        <div
+          className="w-full h-fit md:w-[55%] max-w-[557px] flex flex-col justify-center bg-violet py-12 px-14 rounded"
+        >
           {description && (
             <p className="text-lg text-highlight-warm text-center">{description}</p>
           )}
