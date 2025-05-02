@@ -9,7 +9,7 @@ export const contact: Partial<Page> = {
   layout: [
     {
       blockType: 'formBlock',
-      enableIntro: true,
+      enableContactInfo: true,
       // @ts-ignore
       form: '{{CONTACT_FORM_ID}}',
       introContent: {

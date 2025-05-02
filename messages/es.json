@@ -4,7 +4,8 @@
     "about": "Go to the about page"
   },
   "ContactPage": {
-    "title": "Contacta con nosotros",
-    "description": "Te responderemos lo antes posible. Mientras tanto, ¡disfruta del baile!"
+    "form": {
+      "title": "Ponte en contacto"
+    }
   }
 }

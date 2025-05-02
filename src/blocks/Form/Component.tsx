@@ -1,9 +1,10 @@
 'use client'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
-import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
@@ -25,9 +26,14 @@ export interface Data {
 export type FormBlockType = {
   blockName?: string
   blockType?: 'formBlock'
-  enableIntro: boolean
+  enableContactInfo: boolean
   form: FormType
-  introContent?: SerializedEditorState
+  content?: {
+    intro: SerializedEditorState
+    email: string
+    phone: string
+    address: string
+  }
 }
 
 export const FormBlock: React.FC<
@@ -36,10 +42,10 @@ export const FormBlock: React.FC<
   } & FormBlockType
 > = (props) => {
   const {
-    enableIntro,
+    enableContactInfo,
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
-    introContent,
+    content,
   } = props
 
   const formMethods = useForm({
@@ -125,49 +131,77 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
-      {enableIntro && introContent && !hasSubmitted && (
-        <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
-      )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
-        <FormProvider {...formMethods}>
-          {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText data={confirmationMessage} />
-          )}
-          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-          {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
-          {!hasSubmitted && (
-            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
-                {formFromProps &&
-                  formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
-                    const Field: React.FC<any> = fields?.[field.blockType]
-                    if (Field) {
-                      return (
-                        <div className="mb-6 last:mb-0" key={index}>
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
-                      )
-                    }
-                    return null
-                  })}
+    <div className='relative mb-16'>
+      <div className="container flex gap-14">
+        {/* Left Column: Form */}
+        <div className="w-full lg:max-w-[515px] flex-shrink-0">
+          <div className="p-4 lg:px-6 lg:py-10 border border-border rounded-xl bg-purple">
+            <h2 className="text-3xl text-white mb-6 text-center">
+              Ponte en contacto
+            </h2>
+            <FormProvider {...formMethods}>
+              {!isLoading && hasSubmitted && confirmationType === 'message' && (
+                <RichText data={confirmationMessage} />
+              )}
+              {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+              {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+              {!hasSubmitted && (
+                <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mb-10 last:mb-0">
+                    {formFromProps &&
+                      formFromProps.fields &&
+                      formFromProps.fields?.map((field, index) => {
+                        const Field: React.FC<any> = fields?.[field.blockType]
+                        if (Field) {
+                          return (
+                            <div className="mb-6 last:mb-0" key={index}>
+                              <Field
+                                form={formFromProps}
+                                {...field}
+                                {...formMethods}
+                                control={control}
+                                errors={errors}
+                                register={register}
+                              />
+                            </div>
+                          )
+                        }
+                        return null
+                      })}
+                  </div>
+                  <div className='w-full flex justify-center'>
+                    <Button form={formID} type="submit" variant="pink" className='text-xl px-14 h-12 mx-auto'>
+                      {submitButtonLabel}
+                    </Button>
+                  </div>
+                </form>
+              )}
+            </FormProvider>
+          </div>
+        </div>
+        {/* Right Column: Content */}
+        {enableContactInfo && !hasSubmitted && (
+          <div className="w-full">
+            {content?.intro && (
+              <RichText className="mb-8 lg:mb-12" data={content?.intro} enableGutter={false} />
+            )}
+            {(content?.email || content?.phone || content?.address) && (
+              <div className="space-y-2 text-sm text-muted-foreground">
+                {content?.email && <p>Email: {content.email}</p>}
+                {content?.phone && <p>Phone: {content.phone}</p>}
+                {content?.address && <p>Address: {content.address}</p>}
               </div>
-
-              <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
-              </Button>
-            </form>
-          )}
-        </FormProvider>
+            )}
+          </div>
+        )}
       </div>
+      <Image
+        src="/img/isotype.svg"
+        alt="Logo"
+        width={472}
+        height={622}
+        className="absolute right-[-135px] bottom-0 -z-10 hidden lg:block"
+      />
     </div>
   )
 }

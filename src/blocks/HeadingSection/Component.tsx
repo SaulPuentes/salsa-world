@@ -10,7 +10,7 @@ export const HeadingSectionBlock: React.FC<HeadingSectionProps> = ({
   const sizeClasses = {
     sm: 'text-2xl md:text-3xl',
     md: 'text-3xl md:text-4xl',
-    lg: 'text-4xl md:text-5xl',
+    lg: 'text-4xl md:text-[42px]',
     xl: 'text-5xl md:text-6xl',
   };
 
@@ -20,7 +20,7 @@ export const HeadingSectionBlock: React.FC<HeadingSectionProps> = ({
         {heading}
       </h2>
       {description && (
-        <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+        <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg">
           {description}
         </p>
       )}

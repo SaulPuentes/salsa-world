@@ -18,16 +18,16 @@ export const FormBlock: Block = {
       required: true,
     },
     {
-      name: 'enableIntro',
+      name: 'enableContactInfo',
       type: 'checkbox',
-      label: 'Enable Intro Content and Contact Info',
+      label: 'Enable Content and Contact Info',
     },
     {
       type: 'group',
       name: 'content',
-      label: 'Intro Content and Contact Info',
+      label: 'Content and Contact Info',
       admin: {
-        condition: (_, siblingData) => Boolean(siblingData?.enableIntro),
+        condition: (_, siblingData) => Boolean(siblingData?.enableContactInfo),
       },
       fields: [
         {

@@ -5,13 +5,12 @@ import { BackgroundPanelBlock as BackgroundPanelProps } from '@/payload-types';
 import { isMedia } from '@/utilities/isMedia';
 
 export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
-  backgroundImageDesktop,
-  backgroundImageMobile,
+  link,
+  height = 'md',
   showLogo = false,
   textContent,
-  linkLabel,
-  linkUrl,
-  height = 'md',
+  backgroundImageDesktop,
+  backgroundImageMobile,
 }) => {
   const heightClasses = {
     sm: 'h-[344px]',
@@ -45,7 +44,8 @@ export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
           <Image
             src={'/img/isotype.svg'}
             alt={'Logo'}
-            fill
+            width={146}
+            height={191}
             className="object-cover"
             priority
           />
@@ -55,13 +55,13 @@ export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
             {textContent}
           </h2>
         )}
-        {linkLabel && linkUrl && (
+        {link?.label && link?.url && (
           <CMSLink
-            url={linkUrl}
+            url={link.url}
             className="text-xl md:text-2xl bg-orange text-white px-12 h-12 mt-3"
             appearance="orange"
           >
-            {linkLabel}
+            {link.label}
           </CMSLink>
         )}
       </div>

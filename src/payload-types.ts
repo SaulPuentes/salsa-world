@@ -486,7 +486,7 @@ export interface ArchiveBlock {
  */
 export interface FormBlock {
   form: number | Form;
-  enableIntro?: boolean | null;
+  enableContactInfo?: boolean | null;
   content?: {
     intro?: {
       root: {
@@ -808,8 +808,10 @@ export interface BackgroundPanelBlock {
   backgroundImageDesktop: number | Media;
   backgroundImageMobile?: (number | null) | Media;
   textContent?: string | null;
-  linkLabel?: string | null;
-  linkUrl?: string | null;
+  link?: {
+    label?: string | null;
+    url?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'backgroundPanel';
@@ -1160,7 +1162,7 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
  */
 export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
-  enableIntro?: T;
+  enableContactInfo?: T;
   content?:
     | T
     | {
@@ -1239,8 +1241,12 @@ export interface BackgroundPanelBlockSelect<T extends boolean = true> {
   backgroundImageDesktop?: T;
   backgroundImageMobile?: T;
   textContent?: T;
-  linkLabel?: T;
-  linkUrl?: T;
+  link?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
   id?: T;
   blockName?: T;
 }

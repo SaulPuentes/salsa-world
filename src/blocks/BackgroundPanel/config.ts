@@ -52,20 +52,30 @@ export const BackgroundPanel: Block = {
       required: false,
     },
     {
-      type: 'row',
+      name: 'link',
+      type: 'group',
+      label: 'Link',
       fields: [
         {
-          name: 'linkLabel',
-          label: 'Link Label',
-          type: 'text',
-          admin: {
-            width: '50%',
-          },
-        },
-        {
-          name: 'linkUrl',
-          label: 'Link URL',
-          type: 'text',
+          type: 'row',
+          fields: [
+            {
+              name: 'label',
+              label: 'Label',
+              type: 'text',
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'url',
+              label: 'URL',
+              type: 'text',
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
         },
       ],
     },
