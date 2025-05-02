@@ -18,16 +18,6 @@ export const FAQs: Block = {
         {
           name: 'answer',
           type: 'richText',
-          // editor: lexicalEditor({
-          //   features: ({ rootFeatures }) => {
-          //     return [
-          //       ...rootFeatures,
-          //       HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-          //       FixedToolbarFeature(),
-          //       InlineToolbarFeature(),
-          //     ]
-          //   },
-          // }),
           required: true,
         },
       ],

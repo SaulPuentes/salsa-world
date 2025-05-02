@@ -20,25 +20,56 @@ export const FormBlock: Block = {
     {
       name: 'enableIntro',
       type: 'checkbox',
-      label: 'Enable Intro Content',
+      label: 'Enable Intro Content and Contact Info',
     },
     {
-      name: 'introContent',
-      type: 'richText',
+      type: 'group',
+      name: 'content',
+      label: 'Intro Content and Contact Info',
       admin: {
-        condition: (_, { enableIntro }) => Boolean(enableIntro),
+        condition: (_, siblingData) => Boolean(siblingData?.enableIntro),
       },
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
+      fields: [
+        {
+          name: 'intro',
+          type: 'richText',
+          label: 'Intro Content',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => [
+              ...rootFeatures,
+              HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+              FixedToolbarFeature(),
+              InlineToolbarFeature(),
+            ],
+          }),
         },
-      }),
-      label: 'Intro Content',
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'email',
+              label: 'Email Address',
+              type: 'text',
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'phone',
+              label: 'Phone Number',
+              type: 'text',
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
+        },
+        {
+          name: 'address',
+          label: 'Address',
+          type: 'text',
+        },
+      ],
     },
   ],
   graphQL: {

@@ -1,30 +1,22 @@
+import { CMSLink } from '@/components/Link';
+import { BackgroundPanelBlock as BackgroundPanelProps } from '@/payload-types';
+import { isMedia } from '@/utilities/isMedia';
 import clsx from 'clsx';
 import Image from 'next/image';
-
-type Media = {
-  url?: string;
-  alt?: string;
-};
-
-type BackgroundPanelProps = {
-  backgroundImageDesktop?: Media;
-  backgroundImageMobile?: Media;
-  showLogo?: boolean;
-  heading?: string;
-  height?: 'sm' | 'md' | 'lg';
-};
 
 export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
   backgroundImageDesktop,
   backgroundImageMobile,
   showLogo = false,
-  heading,
+  textContent,
+  linkLabel,
+  linkUrl,
   height = 'md',
 }) => {
   const heightClasses = {
-    sm: 'h-40 md:h-[344px]',
+    sm: 'h-[344px]',
     md: 'h-[417px]',
-    lg: 'h-96 md:h-[531px]',
+    lg: 'h-[531px]',
   };
 
   return (
@@ -34,13 +26,13 @@ export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
         heightClasses[height]
       )}
     >
-      {backgroundImageMobile?.url && (
+      {isMedia(backgroundImageMobile) && (
         <div
           className="absolute inset-0 bg-cover bg-center md:hidden"
           style={{ backgroundImage: `url(${backgroundImageMobile.url})` }}
         />
       )}
-      {backgroundImageDesktop?.url && (
+      {isMedia(backgroundImageDesktop) && (
         <div
           className="absolute inset-0 bg-cover bg-center hidden md:block"
           style={{ backgroundImage: `url(${backgroundImageDesktop.url})` }}
@@ -58,7 +50,20 @@ export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
             priority
           />
         )}
-        {heading && <h2 className="text-xl md:text-3xl font-bold">{heading}</h2>}
+        {textContent && (
+          <h2 className="text-xl md:text-[64px] md:leading-[1.3em] max-w-[700px] mx-auto">
+            {textContent}
+          </h2>
+        )}
+        {linkLabel && linkUrl && (
+          <CMSLink
+            url={linkUrl}
+            className="text-xl md:text-2xl bg-orange text-white px-12 h-12 mt-3"
+            appearance="orange"
+          >
+            {linkLabel}
+          </CMSLink>
+        )}
       </div>
 
       <div className="absolute inset-0 bg-black/30" />

@@ -4,6 +4,24 @@ export const BackgroundPanel: Block = {
   slug: 'backgroundPanel',
   fields: [
     {
+      name: 'showLogo',
+      type: 'checkbox',
+      label: 'Display Logo',
+      defaultValue: true,
+    },
+    {
+      name: 'height',
+      label: 'Section Height',
+      type: 'select',
+      options: [
+        { label: 'Small', value: 'sm' },
+        { label: 'Medium', value: 'md' },
+        { label: 'Large', value: 'lg' },
+      ],
+      defaultValue: 'md',
+      required: true,
+    },
+    {
       type: 'row',
       fields: [
         {
@@ -28,12 +46,6 @@ export const BackgroundPanel: Block = {
       ],
     },
     {
-      name: 'showLogo',
-      type: 'checkbox',
-      label: 'Display Logo',
-      defaultValue: true,
-    },
-    {
       name: 'textContent',
       label: 'Text Content',
       type: 'text',
@@ -56,17 +68,6 @@ export const BackgroundPanel: Block = {
           type: 'text',
         },
       ],
-    },
-    {
-      name: 'height',
-      label: 'Section Height',
-      type: 'select',
-      options: [
-        { label: 'Small', value: 'sm' },
-        { label: 'Medium', value: 'md' },
-        { label: 'Large', value: 'lg' },
-      ],
-      defaultValue: 'md',
     },
   ],
   interfaceName: 'BackgroundPanelBlock',

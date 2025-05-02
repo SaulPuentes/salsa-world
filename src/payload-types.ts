@@ -486,21 +486,26 @@ export interface ArchiveBlock {
 export interface FormBlock {
   form: number | Form;
   enableIntro?: boolean | null;
-  introContent?: {
-    root: {
-      type: string;
-      children: {
+  content?: {
+    intro?: {
+      root: {
         type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
         version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+      };
+      [k: string]: unknown;
+    } | null;
+    email?: string | null;
+    phone?: string | null;
+    address?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'formBlock';
@@ -797,13 +802,13 @@ export interface EventsFinderBlock {
  * via the `definition` "BackgroundPanelBlock".
  */
 export interface BackgroundPanelBlock {
+  showLogo?: boolean | null;
+  height: 'sm' | 'md' | 'lg';
   backgroundImageDesktop: number | Media;
   backgroundImageMobile?: (number | null) | Media;
-  showLogo?: boolean | null;
   textContent?: string | null;
   linkLabel?: string | null;
   linkUrl?: string | null;
-  height?: ('sm' | 'md' | 'lg') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'backgroundPanel';
@@ -1142,7 +1147,14 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
 export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
-  introContent?: T;
+  content?:
+    | T
+    | {
+        intro?: T;
+        email?: T;
+        phone?: T;
+        address?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1208,13 +1220,13 @@ export interface EventsFinderBlockSelect<T extends boolean = true> {
  * via the `definition` "BackgroundPanelBlock_select".
  */
 export interface BackgroundPanelBlockSelect<T extends boolean = true> {
+  showLogo?: T;
+  height?: T;
   backgroundImageDesktop?: T;
   backgroundImageMobile?: T;
-  showLogo?: T;
   textContent?: T;
   linkLabel?: T;
   linkUrl?: T;
-  height?: T;
   id?: T;
   blockName?: T;
 }
