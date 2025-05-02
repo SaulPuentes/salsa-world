@@ -1,8 +1,8 @@
+import clsx from 'clsx';
+import Image from 'next/image';
 import { CMSLink } from '@/components/Link';
 import { BackgroundPanelBlock as BackgroundPanelProps } from '@/payload-types';
 import { isMedia } from '@/utilities/isMedia';
-import clsx from 'clsx';
-import Image from 'next/image';
 
 export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
   backgroundImageDesktop,

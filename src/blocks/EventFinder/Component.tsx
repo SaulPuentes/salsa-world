@@ -1,11 +1,8 @@
-'use client'
-
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { EventsFinderBlock as EventsFinderBlockProps } from '@/payload-types'
 import Image from 'next/image'
-import React from 'react'
 
 type Props = {
   className?: string

@@ -11,6 +11,7 @@ import { FAQsBlock } from './FAQs/Component'
 import { PromoBannerBlock } from './PromoBanner/Component'
 import { EventsFinderBlock } from './EventFinder/Component'
 import { BackgroundPanelBlock } from './BackgroundPanel/Component'
+import { HeadingSectionBlock } from './HeadingSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -21,7 +22,8 @@ const blockComponents = {
   faqs: FAQsBlock,
   promoBanner: PromoBannerBlock,
   eventsFinder: EventsFinderBlock,
-  backgroundPanel: BackgroundPanelBlock
+  backgroundPanel: BackgroundPanelBlock,
+  headingSection: HeadingSectionBlock
 }
 
 export const RenderBlocks: React.FC<{

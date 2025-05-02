@@ -37,7 +37,7 @@ export const FormBlock: Block = {
           editor: lexicalEditor({
             features: ({ rootFeatures }) => [
               ...rootFeatures,
-              HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+              HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
               FixedToolbarFeature(),
               InlineToolbarFeature(),
             ],

@@ -1,12 +1,11 @@
 import type { PromoBannerBlock as PromoBannerBlockProps } from 'src/payload-types'
 
+import Image from 'next/image'
 import { cn } from 'src/utilities/cn'
-import React from 'react'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import { isMedia } from '@/utilities/isMedia'
 import { Media } from '@/components/Media'
-import Image from 'next/image'
 import { DiamondLine } from '@/components/ui/diamond-line'
 
 type Props = {

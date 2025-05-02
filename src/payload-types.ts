@@ -142,6 +142,7 @@ export interface Page {
         | PromoBannerBlock
         | EventsFinderBlock
         | BackgroundPanelBlock
+        | HeadingSectionBlock
       )[]
     | null;
   meta?: {
@@ -815,6 +816,18 @@ export interface BackgroundPanelBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingSectionBlock".
+ */
+export interface HeadingSectionBlock {
+  heading: string;
+  description?: string | null;
+  size: 'sm' | 'md' | 'lg' | 'xl';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'headingSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -1052,6 +1065,7 @@ export interface PagesSelect<T extends boolean = true> {
         promoBanner?: T | PromoBannerBlockSelect<T>;
         eventsFinder?: T | EventsFinderBlockSelect<T>;
         backgroundPanel?: T | BackgroundPanelBlockSelect<T>;
+        headingSection?: T | HeadingSectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1227,6 +1241,17 @@ export interface BackgroundPanelBlockSelect<T extends boolean = true> {
   textContent?: T;
   linkLabel?: T;
   linkUrl?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingSectionBlock_select".
+ */
+export interface HeadingSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  size?: T;
   id?: T;
   blockName?: T;
 }
