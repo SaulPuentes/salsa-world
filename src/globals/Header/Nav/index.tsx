@@ -6,9 +6,7 @@ import type { Header as HeaderType } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { SocialLinks } from '@/components/SocialLinks'
-import { cn } from '@/utilities/cn'
-
-export const underlineAnimation = "no-underline hover:no-underline after:content-[''] after:absolute after:bottom-[-3px] after:right-0 after:w-0 after:h-[1.5px] after:bg-pink after:transition-all after:duration-300 hover:after:w-full hover:after:right-auto"
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -21,8 +19,9 @@ export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
         <CMSLink
           key={i}
           {...link}
+          animated
           appearance="link"
-          className={cn("relative text-white font-mulish font-semibold", underlineAnimation)}
+          className="relative text-white font-mulish font-semibold"
         />
       ))}
       {privateArea?.link && (
@@ -31,15 +30,15 @@ export const HeaderNav: React.FC<{data: HeaderType}> = ({ data }) => {
           appearance="outline"
           size="sm"
           newTab={false}
-          className="text-white mx-4 px-5 py-1 border border-pink hover:bg-pink hover:text-white transition-all duration-300 ease-in-out rounded"
+          className="mx-4 px-5 py-1"
         />
       )}
-
       <SocialLinks
         links={socialLinks}
         color="text-white"
         className="gap-6 transition-opacity duration-300 hover:opacity-80"
       />
+      <LanguageSwitcher />
     </nav>
   )
 }

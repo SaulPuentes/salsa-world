@@ -5,8 +5,6 @@ import clsx from 'clsx'
 import type { Header } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { SocialLinks } from '@/components/SocialLinks'
-import { underlineAnimation } from '../Nav'
-import { cn } from '@/utilities/cn'
 
 interface MobileMenuProps {
   data: Header
@@ -29,7 +27,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ data }) => {
           )}
           style={{ animationDelay: `${index * 100}ms` }}
         >
-          <CMSLink {...link} appearance="link" className={cn("text-2xl font-mulish normal-case", underlineAnimation)} />
+          <CMSLink {...link} appearance="link" className="text-2xl font-mulish normal-case" animated />
         </div>
       ))}
 

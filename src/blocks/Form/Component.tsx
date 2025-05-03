@@ -12,6 +12,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { useTranslations } from 'next-intl'
 
 export type Value = unknown
 
@@ -47,6 +48,9 @@ export const FormBlock: React.FC<
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     content,
   } = props
+
+
+  const t = useTranslations('ContactPage');
 
   const formMethods = useForm({
     defaultValues: buildInitialFormState(formFromProps.fields),
@@ -137,7 +141,7 @@ export const FormBlock: React.FC<
         <div className="w-full lg:max-w-[515px] flex-shrink-0">
           <div className="p-4 lg:px-6 lg:py-10 border border-border rounded-xl bg-purple">
             <h2 className="text-3xl text-white mb-6 text-center">
-              Ponte en contacto
+              {t('title')}
             </h2>
             <FormProvider {...formMethods}>
               {!isLoading && hasSubmitted && confirmationType === 'message' && (

@@ -9,12 +9,14 @@ export const HeadingSection: Block = {
       label: 'Heading',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'description',
       label: 'Description',
       type: 'textarea',
       required: false,
+      localized: true,
     },
     {
       name: 'size',

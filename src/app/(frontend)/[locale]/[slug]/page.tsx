@@ -41,19 +41,22 @@ export async function generateStaticParams() {
 
 type Args = {
   params: Promise<{
-    slug?: string
+    slug?: string,
+    locale: Locale
   }>
 }
+type Locale = 'en' | 'es' | 'de';
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = 'home' } = await paramsPromise
+  const { slug = 'home', locale } = await paramsPromise
   const url = '/' + slug
 
   let page: PageType | null
 
   page = await queryPageBySlug({
     slug,
+    locale
   })
 
   // Remove this code once your website is seeded
@@ -81,16 +84,15 @@ export default async function Page({ params: paramsPromise }: Args) {
   )
 }
 
-export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = 'home' } = await paramsPromise
-  const page = await queryPageBySlug({
-    slug,
-  })
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ slug?: string; locale: Locale }> }): Promise<Metadata> {
+  const { slug = 'home', locale } = await paramsPromise
+
+  const page = await queryPageBySlug({ slug, locale })
 
   return generateMeta({ doc: page })
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPageBySlug = cache(async ({ slug, locale }: { slug: string, locale: Locale }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
@@ -98,6 +100,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
     collection: 'pages',
     draft,
+    locale,
     limit: 1,
     pagination: false,
     overrideAccess: draft,

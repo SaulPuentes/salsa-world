@@ -12,7 +12,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
-import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import { hasLocale } from 'next-intl'
 
 import '../globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -49,7 +49,6 @@ export default async function RootLayout({
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
-        <NextIntlClientProvider>
           <Providers>
             <AdminBar
               adminBarProps={{
@@ -60,7 +59,6 @@ export default async function RootLayout({
             {children}
             <Footer />
           </Providers>
-        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -4,8 +4,6 @@
     "about": "Go to the about page"
   },
   "ContactPage": {
-    "form": {
-      "title": "Ponte en contacto"
-    }
+    "title": "Ponte en contacto"
   }
 }

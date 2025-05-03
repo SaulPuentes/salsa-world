@@ -38,6 +38,9 @@ importers:
       '@payloadcms/richtext-lexical':
         specifier: latest
         version: 3.14.0(kbtdrvxlblqfeoplqvxta6msja)
+      '@payloadcms/translations':
+        specifier: ^3.36.1
+        version: 3.36.1
       '@payloadcms/ui':
         specifier: latest
         version: 3.14.0(@types/react@19.0.1)(monaco-editor@0.52.2)(next@15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.14.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)(utf-8-validate@6.0.5))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
@@ -1401,6 +1404,9 @@ packages:
 
   '@payloadcms/translations@3.14.0':
     resolution: {integrity: sha512-rkjpJubbqpZKYSXZn/mW65oO5wykjRsflfwGutXwukorQJBQG1DlhZ83yb0rJtkeHUXnWaUMs3WFNZ2InUBw7g==}
+
+  '@payloadcms/translations@3.36.1':
+    resolution: {integrity: sha512-pn2RfdKXAwIum/Pir5eF3Qa+ZYVa0G046bQAXw+cxfTaMtQ8XhzN2jbwH95ttwv3r2Qhoc7WUSYtnYZs4tHV7g==}
 
   '@payloadcms/ui@3.14.0':
     resolution: {integrity: sha512-mWENSRkm64F5Z9UtbeLpu3LbtTx4C3zuOZTmD9shGO73K9nq6XkcpDl17VU1rOLic1g84dq4V5nPmvNMHYSK4w==}
@@ -6692,6 +6698,10 @@ snapshots:
       - typescript
 
   '@payloadcms/translations@3.14.0':
+    dependencies:
+      date-fns: 4.1.0
+
+  '@payloadcms/translations@3.36.1':
     dependencies:
       date-fns: 4.1.0
 

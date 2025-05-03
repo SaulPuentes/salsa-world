@@ -3,8 +3,10 @@ import { Slot } from '@radix-ui/react-slot'
 import { type VariantProps, cva } from 'class-variance-authority'
 import * as React from 'react'
 
+const underlineAnimation = "no-underline hover:no-underline after:content-[''] after:absolute after:bottom-[-3px] after:right-0 after:w-0 after:h-[1.5px] after:bg-pink after:transition-all after:duration-300 hover:after:w-full hover:after:right-auto"
+
 const buttonVariants = cva(
-  'inline-flex font-lilita uppercase items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex font-lilita uppercase items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     defaultVariants: {
       size: 'default',
@@ -26,8 +28,12 @@ const buttonVariants = cva(
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         ghost: 'hover:bg-card hover:text-accent-foreground',
         link: 'text-primary items-start justify-start underline-offset-4 hover:underline',
-        outline: 'border border-pink bg-transparent hover:bg-pink hover:text-accent-foreground',
+        outline: 'border border-pink bg-transparent hover:bg-pink rounded',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+      },
+      animatedUnderline: {
+        true: underlineAnimation,
+        false: '',
       },
     },
   },
@@ -45,11 +51,17 @@ const Button: React.FC<ButtonProps> = ({
   className,
   size,
   variant,
+  animatedUnderline,
   ref,
   ...props
 }) => {
   const Comp = asChild ? Slot : 'button'
-  return <Comp className={cn(buttonVariants({ className, size, variant }))} ref={ref} {...props} />
+  return (
+    <Comp className={cn(buttonVariants({ className, size, variant, animatedUnderline }))}
+      ref={ref}
+      {...props}
+    />
+  )
 }
 
 export { Button, buttonVariants }
