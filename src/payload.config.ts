@@ -73,7 +73,7 @@ export default buildConfig({
     // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,
-  sharp,
+  // sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

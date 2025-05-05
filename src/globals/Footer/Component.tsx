@@ -52,7 +52,6 @@ export async function Footer() {
                 alt={featuredEventImage?.alt || ''}
                 width={378}
                 height={143}
-                objectPosition='center'
                 objectFit='cover'
               />
             )}
