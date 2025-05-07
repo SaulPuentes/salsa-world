@@ -27,9 +27,9 @@ const iconMap = {
 }
 
 const defaultSocialLinks: SocialLink[] = [
-  { platform: 'instagram', url: 'https://www.instagram.com/salsaworld' },
-  { platform: 'facebook', url: 'https://www.facebook.com/salsaworld' },
-  { platform: 'tiktok', url: 'https://www.tiktok.com/@salsaworld' },
+  { platform: 'instagram', url: 'https://www.instagram.com/salsaworldmx' },
+  { platform: 'facebook', url: 'https://www.facebook.com/salsaworldmx' },
+  { platform: 'tiktok', url: 'https://www.tiktok.com/@salsaworldmx' },
 ]
 
 export const SocialLinks: React.FC<Props> = ({ links , color = 'text-white', className }) => {

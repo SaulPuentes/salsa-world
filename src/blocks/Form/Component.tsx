@@ -13,6 +13,7 @@ import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
 import { useTranslations } from 'next-intl'
+import { SocialLinks } from '@/components/SocialLinks'
 
 export type Value = unknown
 
@@ -139,7 +140,7 @@ export const FormBlock: React.FC<
       <div className="container flex gap-14">
         {/* Left Column: Form */}
         <div className="w-full lg:max-w-[515px] flex-shrink-0">
-          <div className="p-4 lg:px-6 lg:py-10 border border-border rounded-xl bg-purple">
+          <div className="p-4 lg:px-6 lg:pb-10 pt-14 border border-border rounded-xl bg-purple">
             <h2 className="text-3xl text-white mb-6 text-center">
               {t('title')}
             </h2>
@@ -189,11 +190,20 @@ export const FormBlock: React.FC<
             {content?.intro && (
               <RichText className="mb-8 lg:mb-12" data={content?.intro} enableGutter={false} />
             )}
-            {(content?.email || content?.phone || content?.address) && (
+            {(content?.email || content?.phone) && (
               <div className="space-y-2 text-sm text-muted-foreground">
                 {content?.email && <p>Email: {content.email}</p>}
                 {content?.phone && <p>Phone: {content.phone}</p>}
-                {content?.address && <p>Address: {content.address}</p>}
+              </div>
+            )}
+            <div className="mt-4">
+              <h3 className="text-lg">Síguenos en redes sociales</h3>
+              <SocialLinks color='text-pink'/>
+            </div>
+            {content?.address && (
+              <div className="mt-4">
+                <h3 className="text-lg">Dónde encontrarnos</h3>
+                <p className="text-sm">{content.address}</p>
               </div>
             )}
           </div>
