@@ -5,6 +5,7 @@ export const contact: Partial<Page> = {
   _status: 'published',
   hero: {
     type: 'none',
+    theme: 'dark',
   },
   layout: [
     {

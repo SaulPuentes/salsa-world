@@ -7,6 +7,7 @@ export const homeStatic: Page = {
   _status: 'published',
   hero: {
     type: 'lowImpact',
+    theme: 'dark',
     richText: {
       root: {
         type: 'root',
