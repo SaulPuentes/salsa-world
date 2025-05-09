@@ -145,7 +145,7 @@ export interface Page {
   hero: {
     title?: string | null;
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    theme?: ('light' | 'dark') | null;
+    theme: 'light' | 'dark';
     richText?: {
       root: {
         type: string;
@@ -899,7 +899,7 @@ export interface AboutOverviewBlock {
         content: {
           title: string;
           description: string;
-          backgroundColor: 'orange' | 'pink' | 'violet';
+          bgColor: 'orange' | 'pink' | 'violet';
         };
         id?: string | null;
       }[]
@@ -1373,7 +1373,7 @@ export interface AboutOverviewBlockSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
-              backgroundColor?: T;
+              bgColor?: T;
             };
         id?: T;
       };

@@ -28,7 +28,7 @@ export const AboutOverview: Block = {
               required: true,
             },
             {
-              name: 'backgroundColor',
+              name: 'bgColor',
               type: 'select',
               label: 'Background Color',
               required: true,
