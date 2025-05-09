@@ -145,6 +145,7 @@ export interface Page {
   hero: {
     title?: string | null;
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    theme: 'light' | 'dark';
     richText?: {
       root: {
         type: string;
@@ -186,6 +187,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
     overlayImage?: (number | null) | Media;
+    mobileOverlayImage?: (number | null) | Media;
   };
   layout?:
     | (
@@ -199,6 +201,8 @@ export interface Page {
         | EventsFinderBlock
         | BackgroundPanelBlock
         | HeadingSectionBlock
+        | AboutOverviewBlock
+        | TextOverlayBlock
       )[]
     | null;
   meta?: {
@@ -887,6 +891,40 @@ export interface HeadingSectionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutOverviewBlock".
+ */
+export interface AboutOverviewBlock {
+  sections?:
+    | {
+        content: {
+          title: string;
+          description: string;
+          backgroundColor: 'orange' | 'pink' | 'violet';
+        };
+        id?: string | null;
+      }[]
+    | null;
+  footerImage?: (number | null) | Media;
+  footerImageMobile?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutOverview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextOverlayBlock".
+ */
+export interface TextOverlayBlock {
+  title: string;
+  description: string;
+  backgroundImage?: (number | null) | Media;
+  backgroundImageMobile?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textOverlayBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
@@ -1093,6 +1131,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         title?: T;
         type?: T;
+        theme?: T;
         richText?: T;
         links?:
           | T
@@ -1111,6 +1150,7 @@ export interface PagesSelect<T extends boolean = true> {
             };
         media?: T;
         overlayImage?: T;
+        mobileOverlayImage?: T;
       };
   layout?:
     | T
@@ -1125,6 +1165,8 @@ export interface PagesSelect<T extends boolean = true> {
         eventsFinder?: T | EventsFinderBlockSelect<T>;
         backgroundPanel?: T | BackgroundPanelBlockSelect<T>;
         headingSection?: T | HeadingSectionBlockSelect<T>;
+        aboutOverview?: T | AboutOverviewBlockSelect<T>;
+        textOverlayBlock?: T | TextOverlayBlockSelect<T>;
       };
   meta?:
     | T
@@ -1315,6 +1357,40 @@ export interface HeadingSectionBlockSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
   size?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutOverviewBlock_select".
+ */
+export interface AboutOverviewBlockSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        content?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              backgroundColor?: T;
+            };
+        id?: T;
+      };
+  footerImage?: T;
+  footerImageMobile?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextOverlayBlock_select".
+ */
+export interface TextOverlayBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  backgroundImage?: T;
+  backgroundImageMobile?: T;
   id?: T;
   blockName?: T;
 }

@@ -46,6 +46,17 @@ export const hero: Field = {
       required: true,
     },
     {
+      name: 'theme',
+      type: 'select',
+      label: 'Theme',
+      defaultValue: 'light',
+      options: [
+        { label: 'Light', value: 'light' },
+        { label: 'Dark', value: 'dark' },
+      ],
+      required: true,
+    },
+    {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({
@@ -75,13 +86,29 @@ export const hero: Field = {
       required: true,
     },
     {
-      name: 'overlayImage',
-      type: 'upload',
-      label: 'Overlay Image',
-      relationTo: 'media',
-      admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'overlayImage',
+          type: 'upload',
+          label: 'Overlay Image',
+          relationTo: 'media',
+          admin: {
+            width: '50%',
+            condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+          },
+        },
+        {
+          name: 'mobileOverlayImage',
+          type: 'upload',
+          label: 'Mobile Overlay Image',
+          relationTo: 'media',
+          admin: {
+            width: '50%',
+            condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+          },
+        },
+      ],
     },
   ],
   label: false,

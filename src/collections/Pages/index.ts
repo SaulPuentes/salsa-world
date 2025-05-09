@@ -12,6 +12,8 @@ import { PromoBanner } from '@/blocks/PromoBanner/config'
 import { EventsFinder } from '@/blocks/EventFinder/config'
 import { BackgroundPanel } from '@/blocks/BackgroundPanel/config'
 import { HeadingSection } from '@/blocks/HeadingSection/config'
+import { AboutOverview } from '@/blocks/AboutOverview/config'
+import { TextOverlayBlock } from '@/blocks/TextOverlayBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -90,7 +92,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 PromoBanner,
                 EventsFinder,
                 BackgroundPanel,
-                HeadingSection
+                HeadingSection,
+                AboutOverview,
+                TextOverlayBlock,
               ],
               admin: {
                 initCollapsed: true,
