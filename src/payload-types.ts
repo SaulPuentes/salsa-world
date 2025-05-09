@@ -145,7 +145,7 @@ export interface Page {
   hero: {
     title?: string | null;
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    theme: 'light' | 'dark';
+    theme?: ('light' | 'dark') | null;
     richText?: {
       root: {
         type: string;
