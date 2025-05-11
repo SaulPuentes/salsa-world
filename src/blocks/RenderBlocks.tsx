@@ -27,7 +27,7 @@ const blockComponents = {
   backgroundPanel: BackgroundPanelBlock,
   headingSection: HeadingSectionBlock,
   aboutOverview: AboutOverviewBlock,
-  textOverlay: TextOverlayBlock
+  textOverlayBlock: TextOverlayBlock
 }
 
 export const RenderBlocks: React.FC<{
@@ -49,6 +49,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <Fragment key={index}>
+                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </Fragment>
               )

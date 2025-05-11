@@ -1,7 +1,7 @@
 // storage-adapter-import-placeholder
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 
-// import sharp from 'sharp'
+import sharp from 'sharp'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -73,7 +73,7 @@ export default buildConfig({
     // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,
-  // sharp,
+  sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
