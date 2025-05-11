@@ -15,7 +15,7 @@ export const HeadingSectionBlock: React.FC<HeadingSectionProps> = ({
   };
 
   return (
-    <section className="text-center px-4 py-8">
+    <section className="text-center px-4 pt-8 pb-8 lg:pb-16">
       <h2 className={clsx('font-bold', sizeClasses[size])}>
         {heading}
       </h2>

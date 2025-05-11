@@ -51,7 +51,7 @@ export const BackgroundPanelBlock: React.FC<BackgroundPanelProps> = ({
           />
         )}
         {textContent && (
-          <h2 className="text-xl md:text-[64px] md:leading-[1.3em] max-w-[700px] mx-auto">
+          <h2 className="text-3xl md:text-[64px] md:leading-[1.3em] max-w-[700px] mx-auto">
             {textContent}
           </h2>
         )}

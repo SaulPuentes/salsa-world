@@ -1,19 +1,17 @@
 'use client'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
+import React from 'react'
 import Image from 'next/image'
-import React, { useCallback, useState } from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
+import { FormProvider } from 'react-hook-form'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
-import { getClientSideURL } from '@/utilities/getURL'
-import { useTranslations } from 'next-intl'
-import { SocialLinks } from '@/components/SocialLinks'
+import { defaultSocialLinks, SocialLinks } from '@/components/SocialLinks'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+
 
 export type Value = unknown
 
@@ -50,97 +48,25 @@ export const FormBlock: React.FC<
     content,
   } = props
 
-
-  const t = useTranslations('ContactPage');
-
-  const formMethods = useForm({
-    defaultValues: buildInitialFormState(formFromProps.fields),
-  })
   const {
+    formMethods,
+    isLoading,
+    hasSubmitted,
+    error,
     control,
-    formState: { errors },
+    errors,
     handleSubmit,
     register,
-  } = formMethods
-
-  const [isLoading, setIsLoading] = useState(false)
-  const [hasSubmitted, setHasSubmitted] = useState<boolean>()
-  const [error, setError] = useState<{ message: string; status?: string } | undefined>()
-  const router = useRouter()
-
-  const onSubmit = useCallback(
-    (data: Data) => {
-      let loadingTimerID: ReturnType<typeof setTimeout>
-      const submitForm = async () => {
-        setError(undefined)
-
-        const dataToSend = Object.entries(data).map(([name, value]) => ({
-          field: name,
-          value,
-        }))
-
-        // delay loading indicator by 1s
-        loadingTimerID = setTimeout(() => {
-          setIsLoading(true)
-        }, 1000)
-
-        try {
-          const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
-            body: JSON.stringify({
-              form: formID,
-              submissionData: dataToSend,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-          })
-
-          const res = await req.json()
-
-          clearTimeout(loadingTimerID)
-
-          if (req.status >= 400) {
-            setIsLoading(false)
-
-            setError({
-              message: res.errors?.[0]?.message || 'Internal Server Error',
-              status: res.status,
-            })
-
-            return
-          }
-
-          setIsLoading(false)
-          setHasSubmitted(true)
-
-          if (confirmationType === 'redirect' && redirect) {
-            const { url } = redirect
-
-            const redirectUrl = url
-
-            if (redirectUrl) router.push(redirectUrl)
-          }
-        } catch (err) {
-          console.warn(err)
-          setIsLoading(false)
-          setError({
-            message: 'Something went wrong.',
-          })
-        }
-      }
-
-      void submitForm()
-    },
-    [router, formID, redirect, confirmationType],
-  )
+    onSubmit,
+    t
+  } = useFormSubmission(formFromProps, formID!, confirmationType!, redirect)
 
   return (
     <div className='relative mb-16'>
-      <div className="container flex gap-14">
+      <div className="container flex flex-col lg:flex-row gap-14">
         {/* Left Column: Form */}
         <div className="w-full lg:max-w-[515px] flex-shrink-0">
-          <div className="p-4 lg:px-6 lg:pb-10 pt-14 border border-border rounded-xl bg-purple">
+          <div className="p-4 pt-14 mx-auto bg-purple border border-border rounded-lg max-w-xl lg:px-6 lg:pb-10">
             <h2 className="text-3xl text-white mb-6 text-center">
               {t('title')}
             </h2>
@@ -188,18 +114,17 @@ export const FormBlock: React.FC<
         {enableContactInfo && !hasSubmitted && (
           <div className="w-full">
             {content?.intro && (
-              <RichText className="mb-8 lg:mb-12" data={content?.intro} enableGutter={false} />
+              <RichText className="mb-4 lg:my-8 text-white" data={content?.intro} enableGutter={false} />
             )}
-            {(content?.email || content?.phone) && (
-              <div className="space-y-2 text-sm text-muted-foreground">
-                {content?.email && <p>Email: {content.email}</p>}
-                {content?.phone && <p>Phone: {content.phone}</p>}
+              <div className="flex gap-10 items-end text-sm">
+                <div className="mt-6 max-w-[300px]">
+                  <h3 className="text-lg mb-3">¡Síguenos en nuestras redes sociales y no te pierdas nada!</h3>
+                  <SocialLinks
+                    color='text-pink'
+                    links={[ ...defaultSocialLinks, { platform: 'email', url: content?.email || '' } ]}
+                  />
+                </div>
               </div>
-            )}
-            <div className="mt-4">
-              <h3 className="text-lg">Síguenos en redes sociales</h3>
-              <SocialLinks color='text-pink'/>
-            </div>
             {content?.address && (
               <div className="mt-4">
                 <h3 className="text-lg">Dónde encontrarnos</h3>
