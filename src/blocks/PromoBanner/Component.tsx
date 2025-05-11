@@ -42,7 +42,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
             />
           )}
           <h2 className="text-3xl md:text-5xl mb-3 text-pink leading-[1.3em]">
-          Salsa World
+            Salsa World
           </h2>
           <DiamondLine count={5} color='text-orange mb-10 md:mb-0'/>
         </div>
