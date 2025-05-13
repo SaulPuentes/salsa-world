@@ -1,48 +1,55 @@
 'use client'
 
 import { useState } from 'react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { FaSearch } from 'react-icons/fa'
-import { cn } from '@/utilities/cn'
+import { cn } from 'src/utilities/cn'
 
-export const EventFiltersBar = () => {
-  const [showSearchInput, setShowSearchInput] = useState(false)
+const inputStyles = 'mt-0 py-0 bg-transparent border-none focus-visible:ring-offset-0 focus-visible:ring-0 text-white placeholder:text-white/60'
+
+export const EventsFilterBar = () => {
+  const handleSubmit = () => {
+    // TODO: Implement search logic
+    console.log('Search triggered')
+  }
 
   return (
-    <div className="bg-[#6D6CFF] text-white rounded-full px-4 py-2 flex items-center gap-4 w-full max-w-7xl mx-auto shadow-md overflow-hidden">
-      <div className="flex flex-col text-sm font-medium pr-4 border-r border-white">
-        <span>Ubicación</span>
-        <span className="text-white/80 text-sm font-normal">Buscar ubicación</span>
-      </div>
-
-      <div className="flex flex-col text-sm font-medium px-4 border-r border-white">
-        <span>Fecha</span>
-        <span className="text-white/80 text-sm font-normal">Introduce las fechas</span>
-      </div>
-
-      <div className="flex items-center gap-2 px-4 border-r border-white">
-        <div className="flex flex-col text-sm font-medium">
-          <span>Fecha</span>
-          <span className="text-white/80 text-sm font-normal">Introduce las fechas</span>
-        </div>
-        <span className="text-white text-lg">{'>'}</span>
-      </div>
-
-      <div className="relative flex items-center px-4 flex-1 justify-end">
-        <button
-          className="bg-white w-10 h-10 rounded-full flex items-center justify-center text-orange-500 hover:bg-orange-100 transition"
-          onClick={() => setShowSearchInput(!showSearchInput)}
-        >
-          <FaSearch />
-        </button>
-
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className={cn(
-            "absolute right-12 bg-white text-black rounded-full px-4 py-2 text-sm shadow transition-all duration-300",
-            showSearchInput ? "opacity-100 w-48 ml-2" : "opacity-0 w-0 overflow-hidden"
-          )}
+    <div className="container bg-violet text-white rounded-lg px-4 py-2 flex items-center gap-4 mx-auto text-left">
+      <div className="flex flex-col text-sm font-medium pr-4 border-r border-white flex-1">
+        <span className='px-3 pt-1'>Ubicación</span>
+        <Input
+          placeholder="Buscar ubicación"
+          className={inputStyles}
         />
+      </div>
+
+      <div className="flex flex-col text-sm font-medium px-4 border-r border-white flex-1">
+        <span className='px-3 pt-1'>Fecha</span>
+        <Input
+          placeholder="Introduce las fechas"
+          className={inputStyles}
+        />
+      </div>
+
+      <div className="flex gap-2 px-4 border-r border-white flex-1">
+        <div className="flex flex-col text-sm font-medium w-full">
+          <span className='px-3 pt-1'>Fecha</span>
+          <Input
+            placeholder="Introduce las fechas"
+            className={inputStyles}
+          />
+        </div>
+      </div>
+
+      <div className="relative flex items-center px-4 justify-end">
+        <Button
+          size="icon"
+          className='rounded-full text-orange'
+          onClick={handleSubmit}
+        >
+          <FaSearch size={17} />
+        </Button>
       </div>
     </div>
   )

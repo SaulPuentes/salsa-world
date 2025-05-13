@@ -1,3 +1,4 @@
+import { EventsFilterBar } from '@/components/EventsFilterBar'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
@@ -51,14 +52,14 @@ export const EventsFinderBlock: React.FC<Props> = ({
         )}
 
         {description && (
-          <p className="mb-6 text-base md:text-lg max-w-xl mx-auto">
+          <p className="mb-4 text-base md:text-lg max-w-xl mx-auto">
             {description}
           </p>
         )}
 
         {/* Events Table */}
-        <div className="mt-12">
-          {/* TODO: Insert EventsTable component here */}
+        <div>
+          <EventsFilterBar />
         </div>
         {link && (
           <div className="mt-4">
