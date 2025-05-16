@@ -67,6 +67,8 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    'event-types': EventType;
+    'music-genres': MusicGenre;
     pages: Page;
     posts: Post;
     media: Media;
@@ -83,6 +85,8 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    'event-types': EventTypesSelect<false> | EventTypesSelect<true>;
+    'music-genres': MusicGenresSelect<false> | MusicGenresSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -134,6 +138,30 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-types".
+ */
+export interface EventType {
+  id: number;
+  name: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "music-genres".
+ */
+export interface MusicGenre {
+  id: number;
+  name: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -930,29 +958,44 @@ export interface TextOverlayBlock {
 export interface Event {
   id: number;
   title: string;
-  startDate: string;
-  endDate?: string | null;
-  time: string;
-  ticketCost?: number | null;
-  eventType: 'Social Dance' | 'Festival' | 'Class' | 'Workshop';
-  musicGenres: {
-    genre?: string | null;
-    id?: string | null;
-  }[];
-  artists?:
-    | {
-        artist?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  description?: string | null;
-  imageGallery?:
+  featuredImage?: (number | null) | Media;
+  gallery?:
     | {
         image?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;
+  viewCount?: number | null;
   organization: string;
+  description?: string | null;
+  dates?:
+    | {
+        startDate: string;
+        endDate?: string | null;
+        startTime?: string | null;
+        duration?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  recurrence?: {
+    isRecurring?: boolean | null;
+    frequency?: ('Daily' | 'Weekly' | 'Monthly') | null;
+    repeatOn?: ('sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday')[] | null;
+    startDate?: string | null;
+    recurrenceEndDate?: string | null;
+    startTime?: string | null;
+    duration?: string | null;
+  };
+  price?: number | null;
+  address?: string | null;
+  eventType: number | EventType;
+  musicGenres: (number | MusicGenre)[];
+  artists?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -1039,6 +1082,14 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'event-types';
+        value: number | EventType;
+      } | null)
+    | ({
+        relationTo: 'music-genres';
+        value: number | MusicGenre;
+      } | null)
+    | ({
         relationTo: 'pages';
         value: number | Page;
       } | null)
@@ -1119,6 +1170,28 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-types_select".
+ */
+export interface EventTypesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "music-genres_select".
+ */
+export interface MusicGenresSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1560,31 +1633,46 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface EventsSelect<T extends boolean = true> {
   title?: T;
-  startDate?: T;
-  endDate?: T;
-  time?: T;
-  ticketCost?: T;
-  eventType?: T;
-  musicGenres?:
-    | T
-    | {
-        genre?: T;
-        id?: T;
-      };
-  artists?:
-    | T
-    | {
-        artist?: T;
-        id?: T;
-      };
-  description?: T;
-  imageGallery?:
+  featuredImage?: T;
+  gallery?:
     | T
     | {
         image?: T;
         id?: T;
       };
+  viewCount?: T;
   organization?: T;
+  description?: T;
+  dates?:
+    | T
+    | {
+        startDate?: T;
+        endDate?: T;
+        startTime?: T;
+        duration?: T;
+        id?: T;
+      };
+  recurrence?:
+    | T
+    | {
+        isRecurring?: T;
+        frequency?: T;
+        repeatOn?: T;
+        startDate?: T;
+        recurrenceEndDate?: T;
+        startTime?: T;
+        duration?: T;
+      };
+  price?: T;
+  address?: T;
+  eventType?: T;
+  musicGenres?: T;
+  artists?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
   slug?: T;
   slugLock?: T;
   updatedAt?: T;
