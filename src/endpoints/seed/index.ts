@@ -138,11 +138,11 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Technology',
+        title: 'Salsa',
         breadcrumbs: [
           {
-            label: 'Technology',
-            url: '/technology',
+            label: 'Salsa',
+            url: '/salsa',
           },
         ],
       },
@@ -151,11 +151,11 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'News',
+        title: 'Bachata',
         breadcrumbs: [
           {
-            label: 'News',
-            url: '/news',
+            label: 'Bachata',
+            url: '/bachata',
           },
         ],
       },
@@ -164,11 +164,11 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Finance',
+        title: 'Kizomba',
         breadcrumbs: [
           {
-            label: 'Finance',
-            url: '/finance',
+            label: 'Kizomba',
+            url: '/kizomba',
           },
         ],
       },
@@ -176,24 +176,11 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Design',
+        title: 'Cumbia',
         breadcrumbs: [
           {
-            label: 'Design',
-            url: '/design',
-          },
-        ],
-      },
-    }),
-
-    payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Software',
-        breadcrumbs: [
-          {
-            label: 'Software',
-            url: '/software',
+            label: 'Cumbia',
+            url: '/cumbia',
           },
         ],
       },
@@ -202,11 +189,24 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Engineering',
+        title: 'Salsa Casino',
         breadcrumbs: [
           {
-            label: 'Engineering',
-            url: '/engineering',
+            label: 'Salsa Casino',
+            url: '/salsa-casino',
+          },
+        ],
+      },
+    }),
+
+    payload.create({
+      collection: 'categories',
+      data: {
+        title: 'Salsa Cubana',
+        breadcrumbs: [
+          {
+            label: 'Salsa Cubana',
+            url: '/salsa-cubana',
           },
         ],
       },
@@ -364,7 +364,15 @@ export const seed = async ({
     }),
     payload.updateGlobal({
       slug: 'footer',
-      data: {},
+      data: {
+        contact: {
+          email: process.env.DEFAULT_CONTACT_EMAIL,
+        },
+        featuredEvent: {
+          title: 'Salsa Fest',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        }
+      },
     }),
   ])
 

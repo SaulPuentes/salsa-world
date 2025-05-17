@@ -13,7 +13,6 @@ import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { Events } from './collections/Events'
 import { EventTypes } from './collections/EventTypes'
-import { MusicGenres } from './collections/MusicGenres'
 import { Footer } from './globals/Footer/config'
 import { Header } from './globals/Header/config'
 import { plugins } from './plugins'
@@ -67,7 +66,7 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
   }),
-  collections: [EventTypes, MusicGenres, Pages, Posts, Media, Categories, Users, Events],
+  collections: [EventTypes, Pages, Posts, Media, Categories, Users, Events],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

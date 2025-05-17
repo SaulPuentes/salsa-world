@@ -1,9 +1,12 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
-  },
   "ContactPage": {
     "title": "Ponte en contacto"
+  },
+  "Footer": {
+    "sectionTitles": {
+      "shortcuts": "Accesos directos",
+      "location": "Donde encontrarnos",
+      "featuredEvent": "Evento destacado del mes"
+    }
   }
 }

@@ -174,11 +174,10 @@ export const Events: CollectionConfig = {
       relationTo: 'event-types',
       required: true,
     },
-    
     {
-      name: 'musicGenres',
+      name: 'categories',
       type: 'relationship',
-      relationTo: 'music-genres',
+      relationTo: 'categories',
       hasMany: true,
       required: true,
     },    

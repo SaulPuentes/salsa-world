@@ -68,7 +68,6 @@ export interface Config {
   blocks: {};
   collections: {
     'event-types': EventType;
-    'music-genres': MusicGenre;
     pages: Page;
     posts: Post;
     media: Media;
@@ -86,7 +85,6 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     'event-types': EventTypesSelect<false> | EventTypesSelect<true>;
-    'music-genres': MusicGenresSelect<false> | MusicGenresSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -144,18 +142,6 @@ export interface UserAuthOperations {
  * via the `definition` "event-types".
  */
 export interface EventType {
-  id: number;
-  name: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "music-genres".
- */
-export interface MusicGenre {
   id: number;
   name: string;
   slug?: string | null;
@@ -989,7 +975,7 @@ export interface Event {
   price?: number | null;
   address?: string | null;
   eventType: number | EventType;
-  musicGenres: (number | MusicGenre)[];
+  categories: (number | Category)[];
   artists?:
     | {
         name?: string | null;
@@ -1086,10 +1072,6 @@ export interface PayloadLockedDocument {
         value: number | EventType;
       } | null)
     | ({
-        relationTo: 'music-genres';
-        value: number | MusicGenre;
-      } | null)
-    | ({
         relationTo: 'pages';
         value: number | Page;
       } | null)
@@ -1176,17 +1158,6 @@ export interface PayloadMigration {
  * via the `definition` "event-types_select".
  */
 export interface EventTypesSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "music-genres_select".
- */
-export interface MusicGenresSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   slugLock?: T;
@@ -1666,7 +1637,7 @@ export interface EventsSelect<T extends boolean = true> {
   price?: T;
   address?: T;
   eventType?: T;
-  musicGenres?: T;
+  categories?: T;
   artists?:
     | T
     | {
