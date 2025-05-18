@@ -202,11 +202,11 @@ export const seed = async ({
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Salsa Cubana',
+        title: 'Beginner Friendly',
         breadcrumbs: [
           {
-            label: 'Salsa Cubana',
-            url: '/salsa-cubana',
+            label: 'Beginner Friendly',
+            url: '/beginner-friendly',
           },
         ],
       },
