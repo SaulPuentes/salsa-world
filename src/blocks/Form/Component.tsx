@@ -49,7 +49,7 @@ export const FormBlock: React.FC<
     content,
   } = props
 
-  const t = useTranslations('ContactPage')
+  const t = useTranslations('ContactForm')
 
   const {
     formMethods,
