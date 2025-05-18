@@ -2,7 +2,7 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import type { Footer } from '@/payload-types'
 
@@ -12,7 +12,7 @@ import { SocialLinks } from '@/components/SocialLinks'
 import { isMedia } from '@/utilities/isMedia'
 
 export async function Footer() {
-  const t = useTranslations('Footer')
+  const t = await getTranslations('Footer')
   const footerData: Footer = await getCachedGlobal('footer', 1)()
 
   const shortcuts = footerData?.shortcuts || []
