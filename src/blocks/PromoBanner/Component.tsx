@@ -19,9 +19,6 @@ export const PromoBannerBlock: React.FC<Props> = ({
   description,
   link,
 }) => {
-  const overlayMobileUrl = '/img/overlay-mobile.svg'
-  const overlayDesktopUrl = '/img/overlay.svg'
-
   return (
     <div
       className={cn(
@@ -74,7 +71,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
         {/* Overlay Images */}
         <div className="absolute top-0 left-0 w-full h-full md:hidden">
         <Image
-          src={overlayMobileUrl}
+          src='/img/overlay-mobile.svg'
           alt="Overlay mobile"
           fill
           className="object-cover object-center"
@@ -83,7 +80,7 @@ export const PromoBannerBlock: React.FC<Props> = ({
         </div>
         <div className="absolute top-0 left-0 w-full h-full hidden md:block">
           <Image
-            src={overlayDesktopUrl}
+            src='/img/overlay.svg'
             alt="Overlay desktop"
             fill
             className="object-cover object-center"

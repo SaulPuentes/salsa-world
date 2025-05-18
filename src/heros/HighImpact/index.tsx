@@ -1,6 +1,7 @@
 'use client'
-import React from 'react'
+import React, { Fragment } from 'react'
 
+import Image from 'next/image'
 import type { Page } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
@@ -43,11 +44,26 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
           <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
         )}
         {isMedia(overlayImage) && (
-          <Media
-            priority
-            resource={overlayImage}
-            imgClassName="absolute top-0 left-0 min-w-[130%] sm:min-w-[95%] lg:min-w-[75%] h-full object-cover object-right -z-5"
-          />
+          <Fragment>
+            <div className="absolute top-0 left-0 w-full h-full md:hidden">
+            <Image
+              src='/img/overlay-mobile.svg'
+              alt="Overlay mobile"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            </div>
+            <div className="absolute top-0 left-0 min-w-[120%] lg:min-w-[80%] xl:min-w-[75%] h-full hidden md:block">
+              <Image
+                src='/img/overlay.svg'
+                alt="Overlay desktop"
+                fill
+                className="object-cover object-right"
+                priority
+              />
+            </div>
+          </Fragment>
         )}
       </div>
     </div>

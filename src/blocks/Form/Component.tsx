@@ -11,6 +11,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import { fields } from './fields'
 import { defaultSocialLinks, SocialLinks } from '@/components/SocialLinks'
 import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { useTranslations } from 'next-intl'
 
 
 export type Value = unknown
@@ -48,6 +49,8 @@ export const FormBlock: React.FC<
     content,
   } = props
 
+  const t = useTranslations('ContactPage')
+
   const {
     formMethods,
     isLoading,
@@ -57,8 +60,7 @@ export const FormBlock: React.FC<
     errors,
     handleSubmit,
     register,
-    onSubmit,
-    t
+    onSubmit
   } = useFormSubmission(formFromProps, formID!, confirmationType!, redirect)
 
   return (

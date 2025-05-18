@@ -2,11 +2,9 @@ import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { getClientSideURL } from '@/utilities/getURL'
-import { useTranslations } from 'next-intl'
 import { buildInitialFormState } from '@/blocks/Form/buildInitialFormState'
 
 export const useFormSubmission = (formFromProps: any, formID: string, confirmationType: string, redirect: any) => {
-  const t = useTranslations('ContactPage')
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
@@ -79,7 +77,6 @@ export const useFormSubmission = (formFromProps: any, formID: string, confirmati
     errors,
     handleSubmit,
     register,
-    onSubmit,
-    t,
+    onSubmit
   }
 }
