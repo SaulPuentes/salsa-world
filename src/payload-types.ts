@@ -952,7 +952,7 @@ export interface Event {
       }[]
     | null;
   viewCount?: number | null;
-  organization: string;
+  organizationName: string;
   description?: string | null;
   dates?:
     | {
@@ -973,8 +973,13 @@ export interface Event {
     duration?: string | null;
   };
   price?: number | null;
-  address?: string | null;
-  eventType: number | EventType;
+  location: {
+    name: string;
+    address: string;
+    lat: number;
+    lng: number;
+  };
+  eventType?: (number | null) | EventType;
   categories: (number | Category)[];
   artists?:
     | {
@@ -1612,7 +1617,7 @@ export interface EventsSelect<T extends boolean = true> {
         id?: T;
       };
   viewCount?: T;
-  organization?: T;
+  organizationName?: T;
   description?: T;
   dates?:
     | T
@@ -1635,7 +1640,14 @@ export interface EventsSelect<T extends boolean = true> {
         duration?: T;
       };
   price?: T;
-  address?: T;
+  location?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        lat?: T;
+        lng?: T;
+      };
   eventType?: T;
   categories?: T;
   artists?:

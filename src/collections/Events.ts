@@ -47,7 +47,7 @@ export const Events: CollectionConfig = {
       },
     },
     {
-      name: 'organization',
+      name: 'organizationName',
       type: 'text',
       required: true,
     },
@@ -164,15 +164,41 @@ export const Events: CollectionConfig = {
       required: false,
     },
     {
-      name: 'address',
-      type: 'text',
-      required: false,
+      name: 'location',
+      type: 'group',
+      label: 'Location',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Location Name',
+          required: true,
+        },
+        {
+          name: 'address',
+          type: 'text',
+          label: 'Address',
+          required: true,
+        },
+        {
+          name: 'lat',
+          type: 'number',
+          label: 'Latitude',
+          required: true,
+        },
+        {
+          name: 'lng',
+          type: 'number',
+          label: 'Longitude',
+          required: true,
+        },
+      ],
     },
     {
       name: 'eventType',
       type: 'relationship',
       relationTo: 'event-types',
-      required: true,
+      required: false,
     },
     {
       name: 'categories',
@@ -180,7 +206,7 @@ export const Events: CollectionConfig = {
       relationTo: 'categories',
       hasMany: true,
       required: true,
-    },    
+    },
     {
       name: 'artists',
       type: 'array',
