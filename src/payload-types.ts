@@ -962,6 +962,7 @@ export interface Event {
         id?: string | null;
       }[]
     | null;
+  relatedEvents?: (number | Event)[] | null;
   recurrence?: {
     isRecurring?: boolean | null;
     frequency?: ('Daily' | 'Weekly' | 'Monthly') | null;
@@ -969,7 +970,6 @@ export interface Event {
     startDate?: string | null;
     recurrenceEndDate?: string | null;
     startTime?: string | null;
-    duration?: string | null;
   };
   price?: number | null;
   location: {
@@ -1626,6 +1626,7 @@ export interface EventsSelect<T extends boolean = true> {
         endDate?: T;
         id?: T;
       };
+  relatedEvents?: T;
   recurrence?:
     | T
     | {
@@ -1635,7 +1636,6 @@ export interface EventsSelect<T extends boolean = true> {
         startDate?: T;
         recurrenceEndDate?: T;
         startTime?: T;
-        duration?: T;
       };
   price?: T;
   location?:

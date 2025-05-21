@@ -84,6 +84,22 @@ export const Events: CollectionConfig = {
       ],
     },
     {
+      name: 'relatedEvents',
+      type: 'relationship',
+      admin: {
+        position: 'sidebar',
+      },
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: true,
+      relationTo: 'events',
+    },
+    {
       name: 'recurrence',
       type: 'group',
       label: 'Recurring Event Settings',
@@ -147,15 +163,6 @@ export const Events: CollectionConfig = {
             condition: (_, siblingData) => siblingData.isRecurring,
           },
         },
-        {
-          name: 'duration',
-          type: 'text',
-          required: false,
-          label: 'Event Duration',
-          admin: {
-            condition: (_, siblingData) => siblingData.isRecurring,
-          },
-        },
       ],
     },
     {
@@ -204,6 +211,9 @@ export const Events: CollectionConfig = {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
+      admin: {
+        position: 'sidebar',
+      },
       hasMany: true,
       required: true,
     },
