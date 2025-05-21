@@ -3,7 +3,7 @@ import { Event } from "@/payload-types";
 export const event1: Partial<Event> = {
   slug: "event-1",
   title: "Event 1",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  description: "Event 1 description",
   location: {
     name: "Event 1 Venue",
     address: "123 Main St",

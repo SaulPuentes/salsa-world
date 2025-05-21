@@ -47,9 +47,13 @@ export const Events: CollectionConfig = {
       },
     },
     {
-      name: 'organizationName',
-      type: 'text',
-      required: true,
+      name: 'organizations',
+      type: 'relationship',
+      relationTo: 'users',
+      hasMany: true,
+      admin: {
+        condition: (_, siblingData) => ['organizer', 'dancer'].includes(siblingData.role),
+      },
     },
     {
       name: 'description',
@@ -65,21 +69,17 @@ export const Events: CollectionConfig = {
           name: 'startDate',
           type: 'date',
           required: true,
+          admin: {
+            date: { pickerAppearance: 'dayAndTime'},
+          },
         },
         {
           name: 'endDate',
           type: 'date',
           required: false,
-        },
-        {
-          name: 'startTime',
-          type: 'text',
-          required: false,
-        },
-        {
-          name: 'duration',
-          type: 'text',
-          required: false,
+          admin: {
+            date: { pickerAppearance: 'dayAndTime'},
+          },
         },
       ],
     },

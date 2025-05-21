@@ -401,6 +401,7 @@ export interface Category {
 export interface User {
   id: number;
   name?: string | null;
+  role: 'dancer' | 'organizer' | 'admin';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -952,14 +953,12 @@ export interface Event {
       }[]
     | null;
   viewCount?: number | null;
-  organizationName: string;
+  organizations?: (number | User)[] | null;
   description?: string | null;
   dates?:
     | {
         startDate: string;
         endDate?: string | null;
-        startTime?: string | null;
-        duration?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1593,6 +1592,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1617,15 +1617,13 @@ export interface EventsSelect<T extends boolean = true> {
         id?: T;
       };
   viewCount?: T;
-  organizationName?: T;
+  organizations?: T;
   description?: T;
   dates?:
     | T
     | {
         startDate?: T;
         endDate?: T;
-        startTime?: T;
-        duration?: T;
         id?: T;
       };
   recurrence?:

@@ -3,13 +3,10 @@ import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from '
 import * as fs from 'fs'
 import * as path from 'path'
 import { contactForm as contactFormData } from './contact-form'
-import { contact as contactPageData } from './contact-page'
+import { contact  as contactPageData } from './contact-page'
 import { home } from './home'
 import { image1 } from './image-1'
 import { imageHero1 } from './image-hero-1'
-import { post1 } from './post-1'
-import { post2 } from './post-2'
-import { post3 } from './post-3'
 import { event1 } from './event-1'
 
 const collections: CollectionSlug[] = [
@@ -103,6 +100,7 @@ export const seed = async ({
         name: 'Demo Author',
         email: 'demo-author@example.com',
         password: 'password',
+        role: 'organizer',
       },
     }),
     payload.create({
@@ -213,7 +211,11 @@ export const seed = async ({
     collection: 'events',
     depth: 0,
     data: JSON.parse(
-      JSON.stringify({ ...event1, categories: [salsaCategory.id] })
+      JSON.stringify({ ...event1, categories: [
+        salsaCategory.id,
+        bachataCategory.id,
+        kizombaCategory.id,
+      ] })
       // .replace(/"\{\{IMAGE_1\}\}"/g, String(image1ID))
       // .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
     )

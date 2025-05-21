@@ -21,6 +21,17 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
     },
+    {
+      name: 'role',
+      type: 'select',
+      options: [
+        { label: 'Dancer', value: 'dancer' },
+        { label: 'Organizer', value: 'organizer' },
+        { label: 'Admin', value: 'admin' },
+      ],
+      required: true,
+      defaultValue: 'dancer',
+    }
   ],
   timestamps: true,
 }
