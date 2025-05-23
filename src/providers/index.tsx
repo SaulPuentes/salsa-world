@@ -3,6 +3,7 @@ import React from 'react'
 import { HeaderThemeProvider } from './HeaderTheme'
 import { ThemeProvider } from './Theme'
 import { NextIntlClientProvider } from 'next-intl'
+import { EventsProvider } from './EventsProvider'
 
 export const Providers: React.FC<{
   children: React.ReactNode
@@ -10,7 +11,9 @@ export const Providers: React.FC<{
   return (
     <NextIntlClientProvider>
       <ThemeProvider>
-        <HeaderThemeProvider>{children}</HeaderThemeProvider>
+        <HeaderThemeProvider>
+          <EventsProvider>{children}</EventsProvider>
+        </HeaderThemeProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
   )

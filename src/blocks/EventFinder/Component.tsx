@@ -1,4 +1,5 @@
 import { EventsFilterBar } from '@/components/EventsFilterBar'
+import { EventsList } from '@/components/EventsList'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
@@ -17,6 +18,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
   backgroundImage,
   showLogo,
 }) => {
+
   return (
     <div className={`relative overflow-hidden pt-12 pb-16 ${className || ''} bg-white`}>
       {backgroundImage && (
@@ -60,6 +62,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
         {/* Events Table */}
         <div>
           <EventsFilterBar />
+          <EventsList />
         </div>
         {link && (
           <div className="mt-4">

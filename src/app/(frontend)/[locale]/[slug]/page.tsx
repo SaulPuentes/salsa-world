@@ -12,6 +12,7 @@ import type { Page as PageType } from '@/payload-types'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
+import { fetchEvents } from '@/lib/fetchEvents'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
@@ -68,16 +69,18 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
+  const events = (slug === 'home' || slug === 'events')
+    ? ( await fetchEvents({ locale }) )
+    : { docs: [] }
+
   const { hero, layout } = page
 
   return (
     <article>
-      <PageClient />
+      <PageClient events={events.docs} />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
-
       {draft && <LivePreviewListener />}
-
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
     </article>

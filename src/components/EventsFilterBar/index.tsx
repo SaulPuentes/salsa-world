@@ -42,7 +42,7 @@ export const EventsFilterBar = () => {
       <div className="relative flex items-center px-4 justify-end">
         <Button
           size="icon"
-          className='hidden md:flex rounded-full text-orange'
+          className='hidden md:flex rounded-full text-orange bg-white'
           onClick={handleSubmit}
         >
           <FaSearch size={17} />
