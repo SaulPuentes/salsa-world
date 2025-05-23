@@ -214,8 +214,8 @@ export const seed = async ({
     let demoAuthorID: number | string = demoAuthor.id
 
     let image1ID: number | string = image1Doc.id
-    let image2ID: number | string = image2Doc.id
-    let image3ID: number | string = image3Doc.id
+    const image2ID: number | string = image2Doc.id
+    const image3ID: number | string = image3Doc.id
     let imageHomeID: number | string = imageHomeDoc.id
 
     if (payload.db.defaultIDType === 'text') {
