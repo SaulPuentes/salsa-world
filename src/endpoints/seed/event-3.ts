@@ -18,7 +18,7 @@ export const event3: Partial<Event> = {
   ],
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  organizations: ['{{ORGANIZATION}}'],
+  organization: '{{ORGANIZATION}}',
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   featuredImage: '{{IMAGE_1}}',

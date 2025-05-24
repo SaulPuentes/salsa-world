@@ -47,10 +47,9 @@ export const Events: CollectionConfig = {
       },
     },
     {
-      name: 'organizations',
+      name: 'organization',
       type: 'relationship',
       relationTo: 'users',
-      hasMany: true,
       admin: {
         condition: (_, siblingData) => ['organizer', 'dancer'].includes(siblingData.role),
       },

@@ -953,7 +953,7 @@ export interface Event {
       }[]
     | null;
   viewCount?: number | null;
-  organizations?: (number | User)[] | null;
+  organization?: (number | null) | User;
   description?: string | null;
   dates?:
     | {
@@ -1617,7 +1617,7 @@ export interface EventsSelect<T extends boolean = true> {
         id?: T;
       };
   viewCount?: T;
-  organizations?: T;
+  organization?: T;
   description?: T;
   dates?:
     | T

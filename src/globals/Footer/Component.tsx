@@ -56,8 +56,8 @@ export async function Footer() {
             </h1>
             {isMedia(featuredEventImage) && (
               <Image
-                src={featuredEventImage?.url || ''}
-                alt={featuredEventImage?.alt || ''}
+                src={featuredEventImage.url || ''}
+                alt={featuredEventImage.alt || ''}
                 width={378}
                 height={143}
               />
