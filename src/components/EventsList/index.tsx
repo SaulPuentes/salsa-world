@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { FaFacebook } from 'react-icons/fa6'
 import { useEvents } from '@/providers/EventsProvider'
 import { isMedia } from '@/utilities/isMedia'
 import { CheckIcon, CopyIcon, EyeIcon, MapPinIcon, Share2Icon } from 'lucide-react'
-import Link from 'next/link'
-import { FaFacebook } from 'react-icons/fa6'
 
 export function EventsList() {
   const { events } = useEvents()
