@@ -199,7 +199,8 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (number | null) | Media;
+    bgImage?: (number | null) | Media;
+    bgImageMobile?: (number | null) | Media;
     overlayImage?: (number | null) | Media;
     mobileOverlayImage?: (number | null) | Media;
   };
@@ -1197,7 +1198,8 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               id?: T;
             };
-        media?: T;
+        bgImage?: T;
+        bgImageMobile?: T;
         overlayImage?: T;
         mobileOverlayImage?: T;
       };

@@ -7,7 +7,7 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import Image from 'next/image'
 
-export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText, title, theme }) => {
+export const MediumImpactHero: React.FC<Page['hero']> = ({ links, bgImage, richText, title, theme }) => {
   const logoImg = theme === 'dark' ? '/img/isotype.svg': '/img/isotype-variant.svg'
   return (
     <div className="">
@@ -39,17 +39,17 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
         )}
       </div>
       <div className="container ">
-        {media && typeof media === 'object' && (
+        {bgImage && typeof bgImage === 'object' && (
           <div>
             <Media
               className="-mx-4 md:-mx-8 2xl:-mx-16"
               imgClassName=""
               priority
-              resource={media}
+              resource={bgImage}
             />
-            {media?.caption && (
+            {bgImage?.caption && (
               <div className="mt-3">
-                <RichText data={media.caption} enableGutter={false} />
+                <RichText data={bgImage.caption} enableGutter={false} />
               </div>
             )}
           </div>

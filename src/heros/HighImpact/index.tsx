@@ -11,7 +11,7 @@ import { isMedia } from '@/utilities/isMedia'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({
   links,
-  media,
+  bgImage,
   richText,
   title,
   overlayImage
@@ -40,8 +40,8 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
         </div>
       </div>
       <div className="min-h-[80vh] select-none">
-        {isMedia(media) && (
-          <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
+        {isMedia(bgImage) && (
+          <Media fill imgClassName="-z-10 object-cover" priority resource={bgImage} />
         )}
         <Fragment>
           <div className="absolute top-0 left-0 w-full h-full md:hidden">

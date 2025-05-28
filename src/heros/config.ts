@@ -77,13 +77,28 @@ export const hero: Field = {
       },
     }),
     {
-      name: 'media',
-      type: 'upload',
-      admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-      },
-      relationTo: 'media',
-      required: true,
+      type: 'row',
+      fields: [
+        {
+          name: 'bgImage',
+          type: 'upload',
+          admin: {
+            width: '50%',
+            condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+          },
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'bgImageMobile',
+          type: 'upload',
+          admin: {
+            width: '50%',
+            condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+          },
+          relationTo: 'media',
+        },
+      ]
     },
     {
       type: 'row',
