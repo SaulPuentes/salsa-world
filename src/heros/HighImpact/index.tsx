@@ -43,28 +43,26 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
         {isMedia(media) && (
           <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
         )}
-        {isMedia(overlayImage) && (
-          <Fragment>
-            <div className="absolute top-0 left-0 w-full h-full md:hidden">
+        <Fragment>
+          <div className="absolute top-0 left-0 w-full h-full md:hidden">
+          <Image
+            src='/img/overlay-mobile.svg'
+            alt="Overlay mobile"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          </div>
+          <div className="absolute top-0 left-0 min-w-[120%] lg:min-w-[80%] xl:min-w-[75%] h-full hidden md:block">
             <Image
-              src='/img/overlay-mobile.svg'
-              alt="Overlay mobile"
+              src='/img/overlay.svg'
+              alt="Overlay desktop"
               fill
-              className="object-cover object-center"
+              className="object-cover object-right"
               priority
             />
-            </div>
-            <div className="absolute top-0 left-0 min-w-[120%] lg:min-w-[80%] xl:min-w-[75%] h-full hidden md:block">
-              <Image
-                src='/img/overlay.svg'
-                alt="Overlay desktop"
-                fill
-                className="object-cover object-right"
-                priority
-              />
-            </div>
-          </Fragment>
-        )}
+          </div>
+        </Fragment>
       </div>
     </div>
   )

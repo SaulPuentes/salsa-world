@@ -21,7 +21,7 @@ const baseConfig = {
       }),
       {
         protocol: 'https',
-        hostname: '**.public.blob.vercel-storage.com',
+        hostname: 'pivlx898shytlnox.public.blob.vercel-storage.com',
         pathname: '/media/**', // Adjust this to be as specific or broad as needed
       },
     ],
