@@ -19,6 +19,11 @@ const baseConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+      {
+        protocol: 'https',
+        hostname: '**.public.blob.vercel-storage.com',
+        pathname: '/media/**', // Adjust this to be as specific or broad as needed
+      },
     ],
   },
   reactStrictMode: true,
