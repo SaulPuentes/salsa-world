@@ -46,7 +46,7 @@ export function EventsList() {
         return (
           <li
             key={event.id}
-            className="flex flex-col md:flex-row items-start gap-4 bg-white p-4 rounded-lg shadow-sm"
+            className="flex flex-col md:flex-row items-start gap-4 bg-white p-4 rounded-lg shadow-sm bg-[#EFEFEF] relative"
           >
             {/* Event Image */}
             {isMedia(event?.featuredImage) && (
@@ -57,21 +57,21 @@ export function EventsList() {
                   fill
                   className="object-cover"
                 />
-                <span className="absolute top-2 left-2 bg-white text-sm text-pink-600 rounded-full px-2 py-1 flex items-center gap-1 shadow">
-                  <EyeIcon className="w-4 h-4" />
+                <span className="absolute top-2 left-2 bg-white text-sm rounded-full px-2 py-1 flex items-center gap-1 shadow">
+                  <EyeIcon className="w-4 h-4 text-pink" />
                   {event.viewCount}
                 </span>
               </div>
             )}
 
             {/* Event Info */}
-            <div className="flex-1 space-y-1">
+            <div className="flex-1 space-y-1 text-left">
               <div className="text-orange-500 text-sm font-medium">
                 {event?.dates?.[0]?.startDate ?? 'Fecha no disponible'}
               </div>
-              <h3 className="text-xl font-bold">{event.title}</h3>
-              <div className="mt-2 flex items-center gap-1 text-sm text-gray-600">
-                <MapPinIcon className="w-4 h-4 text-violet-500" />
+              <h3 className="text-2xl font-bold normal-case">{event.title}</h3>
+              <div className="mt-2 flex items-center gap-1 text-sm text-[#4F4F4F] bg-white p-2 rounded-full">
+                <MapPinIcon className="w-[24px] h-[24px] text-violet" />
                 {event.location.address}
               </div>
             </div>

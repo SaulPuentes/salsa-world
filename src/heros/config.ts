@@ -81,6 +81,7 @@ export const hero: Field = {
       fields: [
         {
           name: 'bgImage',
+          label: 'Background Image',
           type: 'upload',
           admin: {
             width: '50%',
@@ -91,6 +92,7 @@ export const hero: Field = {
         },
         {
           name: 'bgImageMobile',
+          label: 'Background Image (Mobile)',
           type: 'upload',
           admin: {
             width: '50%',
@@ -116,7 +118,7 @@ export const hero: Field = {
         {
           name: 'mobileOverlayImage',
           type: 'upload',
-          label: 'Mobile Overlay Image',
+          label: 'Overlay Image (Mobile)',
           relationTo: 'media',
           admin: {
             width: '50%',
