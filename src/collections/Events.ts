@@ -51,7 +51,7 @@ export const Events: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       admin: {
-        condition: (_, siblingData) => ['organizer', 'dancer'].includes(siblingData.role),
+        position: 'sidebar',
       },
     },
     {

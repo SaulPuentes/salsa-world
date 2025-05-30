@@ -46,7 +46,7 @@ export function EventsList() {
         return (
           <li
             key={event.id}
-            className="flex flex-col md:flex-row items-start gap-4 bg-white p-4 rounded-lg shadow-sm bg-[#EFEFEF] relative"
+            className="flex flex-col md:flex-row items-start gap-4 p-4 rounded-lg shadow-sm bg-[#EFEFEF] relative"
           >
             {/* Event Image */}
             {isMedia(event?.featuredImage) && (

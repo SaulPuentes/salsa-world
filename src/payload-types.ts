@@ -404,6 +404,17 @@ export interface User {
   id: number;
   name?: string | null;
   role: 'dancer' | 'organizer' | 'admin';
+  profileImage?: (number | null) | Media;
+  description?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'tiktok';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1597,6 +1608,17 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   role?: T;
+  profileImage?: T;
+  description?: T;
+  phone?: T;
+  address?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
