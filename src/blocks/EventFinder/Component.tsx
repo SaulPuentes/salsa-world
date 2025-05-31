@@ -1,10 +1,10 @@
-import { EventsFilterBar } from '@/components/EventsFilterBar'
-import { EventsList } from '@/components/EventsList'
-import { CMSLink } from '@/components/Link'
-import { Media } from '@/components/Media'
-import RichText from '@/components/RichText'
-import { EventsFinderBlock as EventsFinderBlockProps } from '@/payload-types'
 import Image from 'next/image'
+import RichText from '@/components/RichText'
+import { Media } from '@/components/Media'
+import { CMSLink } from '@/components/Link'
+import { EventsList } from '@/components/EventsList'
+import { EventsFilterBar } from '@/components/EventsFilterBar'
+import { EventsFinderBlock as EventsFinderBlockProps } from '@/payload-types'
 
 type Props = {
   className?: string
@@ -22,11 +22,13 @@ export const EventsFinderBlock: React.FC<Props> = ({
   return (
     <div className={`relative overflow-hidden pt-12 pb-16 ${className || ''} bg-white`}>
       {backgroundImage && (
-        <Media
-          resource={backgroundImage}
-          fill
-          imgClassName="object-cover object-center"
-        />
+        <div className="absolute inset-0 max-h-[560px] w-full overflow-hidden">
+          <Media
+            resource={backgroundImage}
+            fill
+            imgClassName="object-cover object-center w-full h-full"
+          />
+        </div>
       )}
 
       <div className="relative z-10 container mx-auto text-center px-4 text-black">
@@ -60,7 +62,7 @@ export const EventsFinderBlock: React.FC<Props> = ({
         )}
 
         {/* Events Table */}
-        <div>
+        <div className="space-y-4">
           <EventsFilterBar />
           <EventsList />
         </div>

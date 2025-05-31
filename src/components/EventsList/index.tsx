@@ -3,12 +3,15 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import { FaFacebook } from 'react-icons/fa6'
 import { useEvents } from '@/providers/EventsProvider'
 import { isMedia } from '@/utilities/isMedia'
 import { CheckIcon, CopyIcon, EyeIcon, MapPinIcon, Share2Icon } from 'lucide-react'
+import { formatDateTime } from '@/utilities/formatDateTime'
 
 export function EventsList() {
+  const locale = useLocale()
   const { events } = useEvents()
   const [copiedEventId, setCopiedEventId] = useState<number | null>(null)
 
@@ -42,6 +45,14 @@ export function EventsList() {
     <ul className="space-y-4">
       {events?.map(event => {
         const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/events/${event.id}`
+        const {
+          dates,
+          title,
+          location,
+          categories,
+          description,
+          featuredImage,
+        } = event
 
         return (
           <li
@@ -49,11 +60,11 @@ export function EventsList() {
             className="flex flex-col md:flex-row items-start gap-4 p-4 rounded-lg shadow-sm bg-[#EFEFEF] relative"
           >
             {/* Event Image */}
-            {isMedia(event?.featuredImage) && (
+            {isMedia(featuredImage) && (
               <div className="relative w-full md:w-[200px] h-[150px] rounded-lg overflow-hidden flex-shrink-0">
                 <Image
-                  src={event.featuredImage.url || '/placeholder.jpg'}
-                  alt={event.featuredImage.alt || ''}
+                  src={featuredImage.url || '/placeholder.jpg'}
+                  alt={featuredImage.alt || ''}
                   fill
                   className="object-cover"
                 />
@@ -65,22 +76,37 @@ export function EventsList() {
             )}
 
             {/* Event Info */}
-            <div className="flex-1 space-y-1 text-left">
-              <div className="text-orange-500 text-sm font-medium">
-                {event?.dates?.[0]?.startDate ?? 'Fecha no disponible'}
+            <div className="flex-1 min-w-0 space-y-2 text-left text-[#4F4F4F] w-full md:w-auto">
+              <div className="text-orange text-sm font-medium">
+                {dates?.[0]?.startDate &&
+                  formatDateTime(dates?.[0]?.startDate, locale)
+                }
               </div>
-              <h3 className="text-2xl font-bold normal-case">{event.title}</h3>
-              <div className="mt-2 flex items-center gap-1 text-sm text-[#4F4F4F] bg-white p-2 rounded-full">
-                <MapPinIcon className="w-[24px] h-[24px] text-violet" />
-                {event.location.address}
-              </div>
+              
+              <h3 className="text-xl md:text-2xl normal-case text-black leading-tight break-words">
+                {title}
+              </h3>
+              
+              {description && (
+                <p className="text-sm leading-relaxed break-words line-clamp-2 md:line-clamp-1">
+                  {description}
+                </p>
+              )}
+              
+              <button 
+                onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(event.location.address)}`, '_blank')}
+                className="mt-2 flex items-center gap-1 text-sm bg-white p-2 rounded-full hover:bg-gray-50 transition-colors w-full text-left"
+              >
+                <MapPinIcon className="w-6 h-6 text-violet flex-shrink-0" />
+                <span className="truncate">{location.address}</span>
+              </button>
             </div>
 
             {/* Share Section */}
             <div className="flex flex-col items-center justify-center gap-2 ml-auto text-sm">
               {typeof navigator !== 'undefined' ? (
                 <button
-                  onClick={() => handleShare(event.id, event.title)}
+                  onClick={() => handleShare(event.id, title)}
                   className="flex items-center gap-2 px-3 py-2 bg-violet-100 hover:bg-violet-200 text-violet-700 rounded-lg"
                 >
                   <Share2Icon className="w-4 h-4" />

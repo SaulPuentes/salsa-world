@@ -403,7 +403,7 @@ export interface Category {
 export interface User {
   id: number;
   name?: string | null;
-  role: 'dancer' | 'organizer' | 'admin';
+  role: 'dancer' | 'instructor' | 'dj' | 'performer' | 'promoter' | 'media' | 'organizer' | 'admin';
   profileImage?: (number | null) | Media;
   description?: string | null;
   phone?: string | null;
